@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +19,7 @@ import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +29,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private ActionBar actionbar;
     private ActionBarDrawerToggle toggle;
+
+    private RecyclerView recyclerView;
+    private LinearLayoutManager recyclerViewLayoutManager;
+    private HomePageRecyclerAdapter homePageRecyclerAdapter;
+
+    private ArrayList<ArrayList<String>> movieList;
 
     @SuppressLint("NewApi")
     @Override
@@ -53,6 +62,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //recycler view
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        recyclerViewLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(recyclerViewLayoutManager);
+
+        // specify an adapter (see also next example)
+        homePageRecyclerAdapter = new HomePageRecyclerAdapter(movieList);
+        recyclerView.setAdapter(homePageRecyclerAdapter);
 
     }
 
