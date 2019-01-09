@@ -30,7 +30,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+//        setTheme(R.style.SplashStyle);
+
         super.onCreate(savedInstanceState);
+        setTheme(R.style.MovieMateMainTheme);
         setContentView(R.layout.activity_main);
 
 //        Objects.requireNonNull(getSupportActionBar()).setTitle("");
@@ -38,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        getSupportActionBar().setIcon(R.drawable.ic_launcher_foreground);
 
         navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
