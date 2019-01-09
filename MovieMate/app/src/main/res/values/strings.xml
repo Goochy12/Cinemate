@@ -3,4 +3,7 @@
     <string name="settings_string">Settings</string>
     <string name="about_string">About</string>
     <string name="string_account">Account</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
