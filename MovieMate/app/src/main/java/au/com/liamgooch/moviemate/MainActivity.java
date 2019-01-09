@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, navDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
         //drawer.setDrawerListener(toggle);
         navDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
