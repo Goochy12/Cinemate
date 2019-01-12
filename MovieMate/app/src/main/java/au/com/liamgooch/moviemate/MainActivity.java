@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private LinearLayoutManager recyclerViewLayoutManager;
     private HomePageRecyclerAdapter homePageRecyclerAdapter;
 
-    private ArrayList<ArrayList<String>> movieList;
+    private ArrayList<ArrayList<String>> movieList = new ArrayList<>();
 
     @SuppressLint("NewApi")
     @Override
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         //recycler view
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.new_releases_recycler_view);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView

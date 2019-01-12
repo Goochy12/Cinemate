@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "172095135007",
+    "firebase_url": "https://movie-mate-liamsquared.firebaseio.com",
+    "project_id": "movie-mate-liamsquared",
+    "storage_bucket": "movie-mate-liamsquared.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172095135007:android:9e5c62d3a7cc138d",
+        "android_client_info": {
+          "package_name": "au.com.liamgooch.moviemate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172095135007-e928lr7r2a1j4oho4245qob3fgqtrkfr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "au.com.liamgooch.moviemate",
+            "certificate_hash": "5a61ae0f6c87b68bffb91e91606dae0f5226a62f"
+          }
+        },
+        {
+          "client_id": "172095135007-kkeuc9pbm0cf8el624k6qkrgfb14d63g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqoYExxIBDm-MbNCo948RG_vJ0qM1igHY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172095135007-kkeuc9pbm0cf8el624k6qkrgfb14d63g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
