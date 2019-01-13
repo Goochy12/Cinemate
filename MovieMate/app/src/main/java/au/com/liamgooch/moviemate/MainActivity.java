@@ -2,7 +2,6 @@ package au.com.liamgooch.moviemate;
 
 import android.annotation.SuppressLint;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,14 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -35,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private HomePageRecyclerAdapter homePageRecyclerAdapter;
 
     private ArrayList<ArrayList<String>> movieList = new ArrayList<>();
+    private MovieDataGetter movieDataGetter;
 
     @SuppressLint("NewApi")
     @Override
@@ -79,6 +78,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         homePageRecyclerAdapter = new HomePageRecyclerAdapter(movieList);
         recyclerView.setAdapter(homePageRecyclerAdapter);
 
+        movieDataGetter = new MovieDataGetter(this);
+        movieDataGetter.getReleaseCardData();
+    }
+
+    public void updateNewReleaseCards(ArrayList<ArrayList<String>> new_releases){
+        homePageRecyclerAdapter.setMovieList(new_releases);
     }
 
     @Override
