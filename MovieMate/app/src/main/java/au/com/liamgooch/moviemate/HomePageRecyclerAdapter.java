@@ -1,7 +1,7 @@
 package au.com.liamgooch.moviemate;
 
-import android.media.Image;
-import android.util.Log;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +14,23 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import static au.com.liamgooch.moviemate.String_Values.TAG;
+
+import static au.com.liamgooch.moviemate.String_Values.MOVIE_LOCATION;
+import static au.com.liamgooch.moviemate.String_Values.SYNOPSIS;
+import static au.com.liamgooch.moviemate.String_Values.GENRE;
+import static au.com.liamgooch.moviemate.String_Values.MOVIE_ID;
+import static au.com.liamgooch.moviemate.String_Values.POSTER_LINK;
+import static au.com.liamgooch.moviemate.String_Values.RUNTIME;
+import static au.com.liamgooch.moviemate.String_Values.TITLE;
 
 public class HomePageRecyclerAdapter extends RecyclerView.Adapter<HomePageRecyclerAdapter.MovieCardViewHolder> {
 
     private ArrayList<ArrayList<String>> movieList;
+    private Context context;
 
-    public HomePageRecyclerAdapter(ArrayList<ArrayList<String>> movieList) {
+    public HomePageRecyclerAdapter(ArrayList<ArrayList<String>> movieList, Context context) {
         this.movieList = movieList;
+        this.context = context;
     }
 
     @NonNull
@@ -37,21 +46,39 @@ public class HomePageRecyclerAdapter extends RecyclerView.Adapter<HomePageRecycl
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieCardViewHolder holder, int position) {
-        String title = movieList.get(position).get(0);
-        String description = movieList.get(position).get(1);
-        String runtime = movieList.get(position).get(2);
-        String genre = movieList.get(position).get(3);
-        String poster = movieList.get(position).get(4);
+    public void onBindViewHolder(@NonNull MovieCardViewHolder holder, final int position) {
+        final String location = movieList.get(position).get(0);
+        final String movie_id = movieList.get(position).get(1);
+        final String title = movieList.get(position).get(2);
+        final String synopsis = movieList.get(position).get(3);
+        final String runtime = movieList.get(position).get(4);
+        final String genre = movieList.get(position).get(5);
+        final String poster = movieList.get(position).get(6);
 
         holder.title.setText(title);
-        holder.description.setText(description);
+        holder.synopsis.setText(synopsis);
         holder.genre.setText(genre);
         holder.runime.setText(runtime);
 
         if(poster != null && !poster.isEmpty()){
             Picasso.get().load(poster).into(holder.poster);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent movieDetails = new Intent(context,MovieDetails.class);
+                movieDetails.putExtra(MOVIE_LOCATION,location);
+                movieDetails.putExtra(MOVIE_ID,movie_id);
+                movieDetails.putExtra(TITLE,title);
+                movieDetails.putExtra(SYNOPSIS,synopsis);
+                movieDetails.putExtra(GENRE,genre);
+                movieDetails.putExtra(RUNTIME,runtime);
+                movieDetails.putExtra(POSTER_LINK,poster);
+
+                context.startActivity(movieDetails);
+            }
+        });
     }
 
     @Override
@@ -69,7 +96,7 @@ public class HomePageRecyclerAdapter extends RecyclerView.Adapter<HomePageRecycl
 
         private View itemView;
         private TextView title;
-        private TextView description;
+        private TextView synopsis;
         private TextView runime;
         private TextView genre;
         private ImageView poster;
@@ -79,7 +106,7 @@ public class HomePageRecyclerAdapter extends RecyclerView.Adapter<HomePageRecycl
             this.itemView = itemView;
 
             title = (TextView) itemView.findViewById(R.id.card_title_view);
-            description = (TextView) itemView.findViewById(R.id.card_desc_view);
+            synopsis = (TextView) itemView.findViewById(R.id.card_desc_view);
             runime = (TextView) itemView.findViewById(R.id.card_runtime_view);
             genre = (TextView) itemView.findViewById(R.id.card_genre_view);
             poster = (ImageView) itemView.findViewById(R.id.card_poster_view);

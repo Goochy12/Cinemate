@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 
-import static au.com.liamgooch.moviemate.String_Values.DESCRIPTION;
+import static au.com.liamgooch.moviemate.String_Values.SYNOPSIS;
 import static au.com.liamgooch.moviemate.String_Values.GENRE;
 import static au.com.liamgooch.moviemate.String_Values.NEW_RELEASES;
 import static au.com.liamgooch.moviemate.String_Values.POSTER_LINK;
@@ -31,7 +31,7 @@ public class MovieDataGetter {
     public void getReleaseCardData(){
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference().child(NEW_RELEASES);
-        Log.i(TAG, "getReleaseCardData: ");
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -40,14 +40,18 @@ public class MovieDataGetter {
                 for (DataSnapshot eachRelease : dataSnapshot.getChildren()){
                     ArrayList<String> movie = new ArrayList<>();
                     try {
+                        String location = NEW_RELEASES;
+                        String movie_id = eachRelease.getKey();
                         String title = eachRelease.child(TITLE).getValue(String.class);
-                        String description = eachRelease.child(DESCRIPTION).getValue(String.class);
+                        String synopsis = eachRelease.child(SYNOPSIS).getValue(String.class);
                         String runtime = eachRelease.child(RUNTIME).getValue(String.class);
                         String genre = eachRelease.child(GENRE).getValue(String.class);
                         String poster = eachRelease.child(POSTER_LINK).getValue(String.class);
 
+                        movie.add(location);
+                        movie.add(movie_id);
                         movie.add(title);
-                        movie.add(description);
+                        movie.add(synopsis);
                         movie.add(runtime);
                         movie.add(genre);
                         movie.add(poster);

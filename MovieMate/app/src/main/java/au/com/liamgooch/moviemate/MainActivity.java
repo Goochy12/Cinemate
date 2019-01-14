@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
 
         // specify an adapter (see also next example)
-        homePageRecyclerAdapter = new HomePageRecyclerAdapter(movieList);
+        homePageRecyclerAdapter = new HomePageRecyclerAdapter(movieList,this);
         recyclerView.setAdapter(homePageRecyclerAdapter);
 
         movieDataGetter = new MovieDataGetter(this);

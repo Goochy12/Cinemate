@@ -8,4 +8,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="card_runtime">Runtime:</string>
     <string name="card_genre">Genre:</string>
+
+    <!--Movie details strings-->
+    <string name="movie_title" />
+    <string name="movie_description" />
+    <string name="movie_genre" />
+    <string name="movie_runtime" />
 </resources>

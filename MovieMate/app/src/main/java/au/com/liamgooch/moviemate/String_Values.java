@@ -3,9 +3,12 @@ package au.com.liamgooch.moviemate;
 public class String_Values {
     public static final String TAG = "movie_mate_tag";
     public static final String NEW_RELEASES = "new_releases";
+    public static final String MOVIE_LOCATION = "movie_location";
+    public static final String MOVIE_ID = "movie_id";
+    public static final String ALL_MOVIES = "all_movies";
     //key 5
     public static final String TITLE = "title";
-    public static final String DESCRIPTION = "description";
+    public static final String SYNOPSIS = "description";
     public static final String RUNTIME = "runtime";
     public static final String GENRE = "genre";
     public static final String POSTER_LINK = "poster_link";
