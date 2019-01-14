@@ -8,7 +8,7 @@ public class String_Values {
     public static final String ALL_MOVIES = "all_movies";
     //key 5
     public static final String TITLE = "title";
-    public static final String SYNOPSIS = "description";
+    public static final String SYNOPSIS = "synopsis";
     public static final String RUNTIME = "runtime";
     public static final String GENRE = "genre";
     public static final String POSTER_LINK = "poster_link";

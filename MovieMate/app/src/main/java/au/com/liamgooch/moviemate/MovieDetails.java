@@ -55,13 +55,10 @@ public class MovieDetails extends AppCompatActivity {
             for (DataSnapshot eachFact : dataSnapshot.getChildren()){
                 String key = eachFact.getKey();
                 if (!key.equals("title")){
-                    Log.i(TAG, "Key does not equal title");
                 }
                 if (key.equals("actors")){
-                    Log.i(TAG, "Key = actors");
                 }
                 if (eachFact.getChildren().iterator().hasNext()){
-                    Log.i(TAG, "Children is not null for: " + key);
                 }
             }
             setViews();

@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<ArrayList<String>> movieList = new ArrayList<>();
     private MovieDataGetter movieDataGetter;
 
+    private ProgressBar mainProgressBar;
+
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setTheme(R.style.MovieMateMainTheme);
         setContentView(R.layout.activity_main);
+
+        mainProgressBar = (ProgressBar) findViewById(R.id.mainProgressBar);
+        mainProgressBar.setVisibility(View.VISIBLE);
+        mainProgressBar.animate();
 
 //        Objects.requireNonNull(getSupportActionBar()).setTitle("");
 
@@ -83,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void updateNewReleaseCards(ArrayList<ArrayList<String>> new_releases){
+        mainProgressBar.setVisibility(View.GONE);
         homePageRecyclerAdapter.setMovieList(new_releases);
     }
 
