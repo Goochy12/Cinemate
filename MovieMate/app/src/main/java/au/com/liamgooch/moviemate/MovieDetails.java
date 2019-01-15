@@ -36,7 +36,6 @@ public class MovieDetails extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
 
         Intent intent = getIntent();
         String location = intent.getStringExtra(MOVIE_LOCATION);
