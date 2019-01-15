@@ -17,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -38,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private MovieDataGetter movieDataGetter;
 
     private ProgressBar mainProgressBar;
+//    private AdView mAdView;
 
     @SuppressLint("NewApi")
     @Override
@@ -88,6 +88,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         movieDataGetter = new MovieDataGetter(this);
         movieDataGetter.getReleaseCardData();
+
+//        mAdView = findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
     }
 
     public void updateNewReleaseCards(ArrayList<ArrayList<String>> new_releases){

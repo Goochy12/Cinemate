@@ -14,4 +14,7 @@
     <string name="movie_description" />
     <string name="movie_genre" />
     <string name="movie_runtime" />
+
+    <!--TODO : Update ID-->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>
