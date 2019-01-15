@@ -2,6 +2,7 @@ package au.com.liamgooch.moviemate;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,10 +27,16 @@ import static au.com.liamgooch.moviemate.String_Values.TAG;
 
 public class MovieDetails extends AppCompatActivity {
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
 
         Intent intent = getIntent();
         String location = intent.getStringExtra(MOVIE_LOCATION);
