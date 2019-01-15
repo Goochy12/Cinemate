@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 
+import static au.com.liamgooch.moviemate.String_Values.IMPORTANT_INFORMATION;
 import static au.com.liamgooch.moviemate.String_Values.SYNOPSIS;
 import static au.com.liamgooch.moviemate.String_Values.GENRE;
 import static au.com.liamgooch.moviemate.String_Values.NEW_RELEASES;
@@ -42,11 +43,11 @@ public class MovieDataGetter {
                     try {
                         String location = NEW_RELEASES;
                         String movie_id = eachRelease.getKey();
-                        String title = eachRelease.child(TITLE).getValue(String.class);
-                        String synopsis = eachRelease.child(SYNOPSIS).getValue(String.class);
-                        String runtime = eachRelease.child(RUNTIME).getValue(String.class);
-                        String genre = eachRelease.child(GENRE).getValue(String.class);
-                        String poster = eachRelease.child(POSTER_LINK).getValue(String.class);
+                        String title = eachRelease.child(IMPORTANT_INFORMATION).child(TITLE).getValue(String.class);
+                        String synopsis = eachRelease.child(IMPORTANT_INFORMATION).child(SYNOPSIS).getValue(String.class);
+                        String runtime = eachRelease.child(IMPORTANT_INFORMATION).child(RUNTIME).getValue(String.class);
+                        String genre = eachRelease.child(IMPORTANT_INFORMATION).child(GENRE).getValue(String.class);
+                        String poster = eachRelease.child(IMPORTANT_INFORMATION).child(POSTER_LINK).getValue(String.class);
 
                         movie.add(location);
                         movie.add(movie_id);

@@ -15,7 +15,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static au.com.liamgooch.moviemate.String_Values.ACTORS;
 import static au.com.liamgooch.moviemate.String_Values.ALL_MOVIES;
+import static au.com.liamgooch.moviemate.String_Values.KEY_INFORMATION;
+import static au.com.liamgooch.moviemate.String_Values.KEY_STORYLINES;
+import static au.com.liamgooch.moviemate.String_Values.OTHER;
 import static au.com.liamgooch.moviemate.String_Values.SYNOPSIS;
 import static au.com.liamgooch.moviemate.String_Values.GENRE;
 import static au.com.liamgooch.moviemate.String_Values.MOVIE_ID;
@@ -61,9 +65,14 @@ public class MovieDetails extends AppCompatActivity {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             for (DataSnapshot eachFact : dataSnapshot.getChildren()){
                 String key = eachFact.getKey();
-                if (!key.equals("title")){
-                }
-                if (key.equals("actors")){
+                if (key.equals(KEY_STORYLINES)){
+                    //bullet points
+                }else if (key.equals(KEY_INFORMATION)){
+
+                }else if (key.equals(ACTORS)){
+
+                }else if (key.equals(OTHER)){
+
                 }
                 if (eachFact.getChildren().iterator().hasNext()){
                 }
