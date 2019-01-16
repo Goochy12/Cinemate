@@ -19,5 +19,9 @@ public class String_Values {
     public static final String GENRE = "genre";
     public static final String POSTER_LINK = "poster_link";
 
+    public static final int TITLE_DETAILS_CARD = 0;
+    public static final int TITLE_BULLET_CARD = 1;
+    public static final int NOTITLE_DETAILS_CARD = 2;
+    public static final int ACTORS_CARD = 3;
 
 }

@@ -1,4 +1,4 @@
-package au.com.liamgooch.moviemate;
+package au.com.liamgooch.moviemate.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import au.com.liamgooch.moviemate.MovieDetails;
+import au.com.liamgooch.moviemate.R;
 
 import static au.com.liamgooch.moviemate.String_Values.MOVIE_LOCATION;
 import static au.com.liamgooch.moviemate.String_Values.SYNOPSIS;
@@ -67,7 +69,7 @@ public class HomePageRecyclerAdapter extends RecyclerView.Adapter<HomePageRecycl
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent movieDetails = new Intent(context,MovieDetails.class);
+                Intent movieDetails = new Intent(context, MovieDetails.class);
                 movieDetails.putExtra(MOVIE_LOCATION,location);
                 movieDetails.putExtra(MOVIE_ID,movie_id);
                 movieDetails.putExtra(TITLE,title);

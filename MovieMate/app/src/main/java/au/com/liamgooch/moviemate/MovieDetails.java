@@ -3,10 +3,16 @@ package au.com.liamgooch.moviemate;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import au.com.liamgooch.moviemate.adapters.MovieDetailsRecycleAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
@@ -14,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import static au.com.liamgooch.moviemate.String_Values.ACTORS;
 import static au.com.liamgooch.moviemate.String_Values.ALL_MOVIES;
@@ -33,6 +41,10 @@ public class MovieDetails extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    private RecyclerView recyclerView;
+    private LinearLayoutManager recyclerViewLayoutManager;
+    private MovieDetailsRecycleAdapter MovieDetailsRecycleAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,16 +55,44 @@ public class MovieDetails extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
+        ArrayList<String> importantInfo = new ArrayList<>();
         String location = intent.getStringExtra(MOVIE_LOCATION);
         String movie_id = intent.getStringExtra(MOVIE_ID);
-        String title = intent.getStringExtra(TITLE);
-        String synopsis = intent.getStringExtra(SYNOPSIS);
-        String genre = intent.getStringExtra(GENRE);
-        String runtime = intent.getStringExtra(RUNTIME);
-        String poster = intent.getStringExtra(POSTER_LINK);
+
+        importantInfo.add(location);
+        importantInfo.add(movie_id);
+        importantInfo.add(intent.getStringExtra(TITLE));
+        importantInfo.add(intent.getStringExtra(SYNOPSIS));
+        importantInfo.add(intent.getStringExtra(GENRE));
+        importantInfo.add(intent.getStringExtra(RUNTIME));
+        importantInfo.add(intent.getStringExtra(POSTER_LINK));
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(location).child(movie_id);
-        databaseReference.addListenerForSingleValueEvent(movie_details_VEL);
+//        databaseReference.addListenerForSingleValueEvent(movie_details_VEL);
+
+        //recycler view
+        recyclerView = (RecyclerView) findViewById(R.id.movieDetailsRecyclerView);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        recyclerViewLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(recyclerViewLayoutManager);
+
+        MovieItem movieItem = new MovieItem(importantInfo,null,null,null,null);
+
+        // specify an adapter (see also next example)
+        MovieDetailsRecycleAdapter = new MovieDetailsRecycleAdapter(this,movieItem);
+        recyclerView.setAdapter(MovieDetailsRecycleAdapter);
+
+        CardView cardView = (CardView) findViewById(R.id.title_details_card);
+
+        cardView.findViewById(R.id.title_details_card_title_textView);
+
+        ArrayList<View> views = new ArrayList<>();
+        views.add(cardView);
 
     }
 
