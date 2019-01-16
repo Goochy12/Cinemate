@@ -87,13 +87,6 @@ public class MovieDetails extends AppCompatActivity {
         MovieDetailsRecycleAdapter = new MovieDetailsRecycleAdapter(this,movieItem);
         recyclerView.setAdapter(MovieDetailsRecycleAdapter);
 
-        CardView cardView = (CardView) findViewById(R.id.title_details_card);
-
-        cardView.findViewById(R.id.title_details_card_title_textView);
-
-        ArrayList<View> views = new ArrayList<>();
-        views.add(cardView);
-
     }
 
     public void setViews(){

@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,6 +30,7 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
     public MovieDetailsRecycleAdapter(Context context, MovieItem movieItem){
         this.context = context;
         this.movieItem = movieItem;
+        this.cardList = movieItem.getCardList();
     }
 
     @Override
@@ -90,8 +90,17 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
 //            holder.linearLayout.addView(tx);
 //        }
 
-        switch (cardList.get(position)){
+
+
+        switch (holder.getItemViewType()){
             case TITLE_DETAILS_CARD:
+                TitleDetailsViewHolder viewHolder;
+                viewHolder = (TitleDetailsViewHolder) holder;
+                viewHolder.title.setText(movieItem.getTitle());
+                viewHolder.release.setText(movieItem.getRelease());
+                viewHolder.rating.setText(movieItem.getRating());
+                viewHolder.runtime.setText(movieItem.getRuntime());
+                viewHolder.genre.setText(movieItem.getGenre());
                 return;
             case ACTORS_CARD:
                 return;
@@ -108,7 +117,7 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
 
     @Override
     public int getItemCount() {
-        return movieItem.getSize();
+        return movieItem.getCardList().size();
     }
 
     public void setItem(MovieItem item, ArrayList<Integer> cardList){
@@ -121,12 +130,18 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
     public class TitleDetailsViewHolder extends ViewHolder {
 
         private TextView title;
-        private LinearLayout linearLayout;
+        private TextView release;
+        private TextView rating;
+        private TextView runtime;
+        private TextView genre;
 
         public TitleDetailsViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.title_bullet_title_textview);
-            linearLayout = (LinearLayout) itemView.findViewById(R.id.title_bullet_linearlayout);
+            title = (TextView) itemView.findViewById(R.id.title_details_card_title_textView);
+            release = (TextView) itemView.findViewById(R.id.title_details_card_release_textview);
+            rating = (TextView) itemView.findViewById(R.id.title_details_card_rating_textview);
+            runtime = (TextView) itemView.findViewById(R.id.title_details_card_runtime_textview);
+            genre = (TextView) itemView.findViewById(R.id.title_details_card_genre_textview);
         }
     }
 

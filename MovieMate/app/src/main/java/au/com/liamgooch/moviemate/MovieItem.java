@@ -1,22 +1,25 @@
 package au.com.liamgooch.moviemate;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import static au.com.liamgooch.moviemate.String_Values.ACTORS_CARD;
-import static au.com.liamgooch.moviemate.String_Values.KEY_STORYLINES;
 import static au.com.liamgooch.moviemate.String_Values.NOTITLE_DETAILS_CARD;
 import static au.com.liamgooch.moviemate.String_Values.TITLE_BULLET_CARD;
 import static au.com.liamgooch.moviemate.String_Values.TITLE_DETAILS_CARD;
+import static au.com.liamgooch.moviemate.String_Values.TAG;
 
 public class MovieItem {
     private ArrayList<String> importantInfo;
     private String location;
     private String movie_id;
-    private String name;
+    private String title;
     private String synopsis;
     private String runtime;
     private String genre;
     private String rating;
+    private String release;
     private String poster_link;
 
     private ArrayList<ActorItem> actorList = new ArrayList<>();
@@ -29,7 +32,7 @@ public class MovieItem {
     private int size;
 
     public MovieItem(){
-        this.size = 0;
+        this.size = 0;;
     }
 
     public MovieItem(ArrayList<String> importantInfo, ArrayList<ActorItem> actorList, ArrayList<ArrayList<String>> key_storylines,
@@ -37,8 +40,13 @@ public class MovieItem {
         this.importantInfo = importantInfo;
         location = importantInfo.get(0);
         movie_id = importantInfo.get(1);
-        name = importantInfo.get(2);
+        title = importantInfo.get(2);
         synopsis = importantInfo.get(3);
+        genre = importantInfo.get(4);
+        runtime = importantInfo.get(5);
+        poster_link = importantInfo.get(6);
+        //release
+        //rating
 
         this.actorList = actorList;
         this.key_storylines = key_storylines;
@@ -154,5 +162,77 @@ public class MovieItem {
 
     public void setCardList(ArrayList<Integer> cardList) {
         this.cardList = cardList;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getMovie_id() {
+        return movie_id;
+    }
+
+    public void setMovie_id(String movie_id) {
+        this.movie_id = movie_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
+
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getPoster_link() {
+        return poster_link;
+    }
+
+    public void setPoster_link(String poster_link) {
+        this.poster_link = poster_link;
+    }
+
+    public String getRelease() {
+        return release;
+    }
+
+    public void setRelease(String release) {
+        this.release = release;
     }
 }
