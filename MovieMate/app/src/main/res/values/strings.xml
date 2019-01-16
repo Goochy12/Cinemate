@@ -16,5 +16,6 @@
     <string name="movie_runtime" />
 
     <!--TODO : Update ID-->
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id">ca-app-pub-6054741838157889/8733826793</string>
+    <string name="add_mob_app_id">ca-app-pub-6054741838157889~3016140841</string>
 </resources>

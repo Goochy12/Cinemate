@@ -16,7 +16,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -37,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private MovieDataGetter movieDataGetter;
 
     private ProgressBar mainProgressBar;
-//    private AdView mAdView;
+    private AdView mAdView;
 
     @SuppressLint("NewApi")
     @Override
@@ -52,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mainProgressBar = (ProgressBar) findViewById(R.id.mainProgressBar);
         mainProgressBar.setVisibility(View.VISIBLE);
         mainProgressBar.animate();
+
+        MobileAds.initialize(this, String.valueOf(R.string.add_mob_app_id));
 
 //        Objects.requireNonNull(getSupportActionBar()).setTitle("");
 
@@ -92,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        mAdView = findViewById(R.id.adView);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
-    }
+}
 
     public void updateNewReleaseCards(ArrayList<ArrayList<String>> new_releases){
         mainProgressBar.setVisibility(View.GONE);
