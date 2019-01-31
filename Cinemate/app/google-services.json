@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "582784672945",
-    "firebase_url": "https://cinemate-94f5d.firebaseio.com",
-    "project_id": "cinemate-94f5d",
-    "storage_bucket": "cinemate-94f5d.appspot.com"
+    "project_number": "974238781317",
+    "firebase_url": "https://cinemate-liamgooch.firebaseio.com",
+    "project_id": "cinemate-liamgooch",
+    "storage_bucket": "cinemate-liamgooch.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:582784672945:android:f2be00de604becc4",
+        "mobilesdk_app_id": "1:974238781317:android:f2be00de604becc4",
         "android_client_info": {
           "package_name": "au.com.liamgooch.cinemate"
         }
       },
       "oauth_client": [
         {
-          "client_id": "582784672945-jpr51t15bu60e5jv7s3c13eqd4c9l4bf.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "au.com.liamgooch.cinemate",
-            "certificate_hash": "3873c409d4209116798f8733e9b40164cb0e12aa"
-          }
-        },
-        {
-          "client_id": "582784672945-ome655bm7inf7ti440e6mh6tpclnubpt.apps.googleusercontent.com",
+          "client_id": "974238781317-0uhrgph6d8v4nufj7dftkasg067p9d07.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAyCgnJE3qFfDzzA839sunOeS3aY-YUxI4"
+          "current_key": "AIzaSyD2FgQqrTXqbmD_8SRIsKgCqYomTTu6RA4"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "582784672945-ome655bm7inf7ti440e6mh6tpclnubpt.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

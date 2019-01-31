@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 
