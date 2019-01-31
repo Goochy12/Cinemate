@@ -44,7 +44,9 @@ public class MovieItem {
         synopsis = importantInfo.get(3);
         genre = importantInfo.get(4);
         runtime = importantInfo.get(5);
-        poster_link = importantInfo.get(6);
+        rating = importantInfo.get(6);
+        release = importantInfo.get(7);
+        poster_link = importantInfo.get(8);
         //release
         //rating
 

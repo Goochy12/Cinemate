@@ -18,6 +18,7 @@ public class String_Values {
     public static final String RUNTIME = "runtime";
     public static final String RATING = "rating";
     public static final String GENRE = "genre";
+    public static final String RELEASE = "release";
     public static final String POSTER_LINK = "poster_link";
 
     public static final int TITLE_DETAILS_CARD = 0;

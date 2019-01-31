@@ -36,6 +36,7 @@ import static au.com.liamgooch.cinemate.String_Values.MOVIE_LOCATION;
 import static au.com.liamgooch.cinemate.String_Values.POSTER_LINK;
 import static au.com.liamgooch.cinemate.String_Values.RUNTIME;
 import static au.com.liamgooch.cinemate.String_Values.TITLE;
+import static au.com.liamgooch.cinemate.String_Values.RELEASE;
 import static au.com.liamgooch.cinemate.String_Values.TAG;
 
 public class MovieDetails extends AppCompatActivity {
@@ -73,6 +74,7 @@ public class MovieDetails extends AppCompatActivity {
         importantInfo.add(intent.getStringExtra(GENRE));
         importantInfo.add(intent.getStringExtra(RUNTIME));
         importantInfo.add(intent.getStringExtra(RATING));
+        importantInfo.add(intent.getStringExtra(RELEASE));
         importantInfo.add(intent.getStringExtra(POSTER_LINK));
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(location).child(movie_id);

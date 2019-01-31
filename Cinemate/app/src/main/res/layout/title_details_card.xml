@@ -7,10 +7,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/title_details_card"
     app:cardCornerRadius="4dp"
-    android:layout_marginBottom="2dp"
-    android:layout_marginTop="2dp"
-    android:layout_marginLeft="2dp"
-    android:layout_marginRight="2dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
     android:layout_gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,6 +49,8 @@
             android:layout_marginRight="8dp"
             android:text="TextView"
             android:textSize="12sp"
+            app:autoSizeMaxTextSize="20dp"
+            android:textAlignment="center"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -60,14 +62,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent=".55" />
+            app:layout_constraintGuide_percent=".45" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent=".65" />
+            app:layout_constraintGuide_percent=".55" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline9"
@@ -83,7 +85,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:text="M"
+            app:autoSizeMaxTextSize="20dp"
             android:textSize="12sp"
+            android:textAlignment="center"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/guideline8"
@@ -100,7 +104,8 @@
             android:layout_marginRight="8dp"
             android:text="TextView"
             android:textSize="12sp"
-            app:autoSizeMaxTextSize="15dp"
+            app:autoSizeMaxTextSize="20dp"
+            android:textAlignment="center"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +122,7 @@
             android:layout_marginRight="8dp"
             android:text="TextView"
             android:textSize="12sp"
-            app:autoSizeMaxTextSize="15dp"
+            app:autoSizeMaxTextSize="20dp"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

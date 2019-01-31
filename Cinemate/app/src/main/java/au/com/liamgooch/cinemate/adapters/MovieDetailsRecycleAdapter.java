@@ -1,6 +1,10 @@
 package au.com.liamgooch.cinemate.adapters;
 
 import android.content.Context;
+import android.os.Build;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.BulletSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import au.com.liamgooch.cinemate.MovieItem;
@@ -89,6 +94,7 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        holder.title.setText(test.get(0));
@@ -119,7 +125,10 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
                 titleBulletViewHolder.title.setText(movieItem.getKey_storylines().get(storylinePos).get(0));
                 for (int i = 1; i < movieItem.getKey_storylines().get(storylinePos).size(); i++){
                     TextView t = new TextView(context);
-                    t.setText(movieItem.getKey_storylines().get(storylinePos).get(i));
+                    SpannableString spannableString = SpannableString.valueOf(movieItem.getKey_storylines().get(storylinePos).get(i));
+                    spannableString.setSpan(new BulletSpan(10,context.getResources().getColor(R.color.black),10),0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    t.setText(spannableString);
+//                    t.setText(movieItem.getKey_storylines().get(storylinePos).get(i));
                     titleBulletViewHolder.linearLayout.addView(t);
                 }
                 storylinePos += 1;

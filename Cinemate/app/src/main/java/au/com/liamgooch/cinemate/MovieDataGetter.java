@@ -21,6 +21,7 @@ import static au.com.liamgooch.cinemate.String_Values.POSTER_LINK;
 import static au.com.liamgooch.cinemate.String_Values.RUNTIME;
 import static au.com.liamgooch.cinemate.String_Values.TAG;
 import static au.com.liamgooch.cinemate.String_Values.TITLE;
+import static au.com.liamgooch.cinemate.String_Values.RELEASE;
 
 public class MovieDataGetter {
     private MainActivity mainActivity;
@@ -49,6 +50,7 @@ public class MovieDataGetter {
                         String runtime = eachRelease.child(IMPORTANT_INFORMATION).child(RUNTIME).getValue(String.class);
                         String genre = eachRelease.child(IMPORTANT_INFORMATION).child(GENRE).getValue(String.class);
                         String rating = eachRelease.child(IMPORTANT_INFORMATION).child(RATING).getValue(String.class);
+                        String release = eachRelease.child(IMPORTANT_INFORMATION).child(RELEASE).getValue(String.class);
                         String poster = eachRelease.child(IMPORTANT_INFORMATION).child(POSTER_LINK).getValue(String.class);
 
                         movie.add(location);
@@ -58,6 +60,7 @@ public class MovieDataGetter {
                         movie.add(runtime);
                         movie.add(genre);
                         movie.add(rating);
+                        movie.add(release);
                         movie.add(poster);
 
                         //get other information
