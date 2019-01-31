@@ -14,9 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/CinemateMainTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity 
-android:name=".MainActivity"
-android:theme="@style/SplashStyle">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/SplashStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
