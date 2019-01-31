@@ -67,6 +67,8 @@ public class MovieItem {
     private int sizeSetter(){
         int s = 0;
 
+        cardList.clear();
+
         if (importantInfo != null){
             cardList.add(TITLE_DETAILS_CARD);
             s += 1;
@@ -106,6 +108,7 @@ public class MovieItem {
 
     public void setImportantInfo(ArrayList<String> importantInfo) {
         this.importantInfo = importantInfo;
+        setSize(sizeSetter());
     }
 
     public ArrayList<ActorItem> getActorList() {
@@ -114,6 +117,7 @@ public class MovieItem {
 
     public void setActorList(ArrayList<ActorItem> actorList) {
         this.actorList = actorList;
+        setSize(sizeSetter());
     }
 
     public ArrayList<ArrayList<String>> getKey_storylines() {
@@ -122,6 +126,7 @@ public class MovieItem {
 
     public void setKey_storylines(ArrayList<ArrayList<String>> key_storylines) {
         this.key_storylines = key_storylines;
+        setSize(sizeSetter());
     }
 
     public ArrayList<String> getKey_information() {
@@ -130,6 +135,7 @@ public class MovieItem {
 
     public void setKey_information(ArrayList<String> key_information) {
         this.key_information = key_information;
+        setSize(sizeSetter());
     }
 
     public ArrayList<String> getOther_information() {
@@ -138,6 +144,7 @@ public class MovieItem {
 
     public void setOther_information(ArrayList<String> other_information) {
         this.other_information = other_information;
+        setSize(sizeSetter());
     }
 
     public int getKeyStorylinesSize(){

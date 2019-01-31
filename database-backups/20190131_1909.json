@@ -1,0 +1,42 @@
+{
+  "new_releases" : {
+    "sample_star_wars_the_last_jedi" : {
+      "actors" : {
+        "carrie_fisher" : {
+          "character" : "Princess Leia",
+          "movies" : [ "Star Wars" ],
+          "name" : "Carrie Fisher"
+        },
+        "mark_hamill" : {
+          "character" : "Luke Skywalker",
+          "image" : "https://m.media-amazon.com/images/M/MV5BMjE3NDI5Njc1N15BMl5BanBnXkFtZTgwMzkwMDAyNDM@._V1_.jpg",
+          "movies" : [ "Star Wars", "Voiced the Joker in the Batman Series" ],
+          "name" : "Mark Hamill"
+        }
+      },
+      "important_information" : {
+        "genre" : "Science Fiction / Action",
+        "poster_link" : "https://i.ebayimg.com/images/g/zOkAAOSwh1haFobd/s-l500.jpg",
+        "rating" : "M",
+        "release" : "14/12/2017",
+        "runtime" : "2h 32m (152m)",
+        "synopsis" : "Rey (Daisy Ridley) develops her newly discovered abilities with the guidance of Luke Skywalker (Mark Hamill), who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares for battle with the First Order.",
+        "title" : "Star Wars: Episode VIII - The Last Jedi",
+        "trailer" : "https://www.youtube.com/watch?v=Q0CbN8sfihY"
+      },
+      "key_information" : {
+        "franchise_location" : "The Last Jedi is set in the Star Wars Universe.",
+        "series" : "Yes, it is, this movie is the 8th part of the story but the 10th overall movie for the franchise. This Movie is the second instalment of the Star Wars Sequel trilogy.",
+        "storyline_location" : "The Last Jedi begins straight after Part VII - The Force Awakens finishes."
+      },
+      "key_storylines" : {
+        "key_movie_storylines" : [ "Rey is trained by Luke Skywalker", "General Leia, Finn and Poe are under attack by the First Order" ],
+        "key_real-life_storylines" : [ "Carrie Fisher’s last on-screen appearance before her death" ]
+      },
+      "other" : {
+        "after_credit_scenes" : "No",
+        "budget" : "$225 Million (USD)"
+      }
+    }
+  }
+}

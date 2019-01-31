@@ -46,6 +46,8 @@ public class MovieDetails extends AppCompatActivity {
     private LinearLayoutManager recyclerViewLayoutManager;
     private MovieDetailsRecycleAdapter MovieDetailsRecycleAdapter;
 
+    private MovieItem movieItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +72,7 @@ public class MovieDetails extends AppCompatActivity {
         importantInfo.add(intent.getStringExtra(POSTER_LINK));
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(location).child(movie_id);
-//        databaseReference.addListenerForSingleValueEvent(movie_details_VEL);
+        databaseReference.addListenerForSingleValueEvent(movie_details_VEL);
 
         //recycler view
         recyclerView = (RecyclerView) findViewById(R.id.movieDetailsRecyclerView);
@@ -83,7 +85,7 @@ public class MovieDetails extends AppCompatActivity {
         recyclerViewLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
 
-        MovieItem movieItem = new MovieItem(importantInfo,null,null,null,null);
+        movieItem = new MovieItem(importantInfo,null,null,null,null);
 
         // specify an adapter (see also next example)
         MovieDetailsRecycleAdapter = new MovieDetailsRecycleAdapter(this,movieItem);
@@ -92,7 +94,7 @@ public class MovieDetails extends AppCompatActivity {
     }
 
     public void setViews(){
-
+        MovieDetailsRecycleAdapter.setItem(movieItem);
     }
 
     ValueEventListener movie_details_VEL = new ValueEventListener() {
@@ -102,6 +104,18 @@ public class MovieDetails extends AppCompatActivity {
                 String key = eachFact.getKey();
                 if (key.equals(KEY_STORYLINES)){
                     //bullet points
+                    ArrayList<ArrayList<String>> storyList = new ArrayList<>();
+                    for (DataSnapshot eachSection : eachFact.getChildren()){
+                        String title = eachSection.getKey();
+                        ArrayList<String> list = new ArrayList<>();
+                        list.add(title);
+                        for (DataSnapshot eachPoint : eachSection.getChildren()){
+                            list.add(eachPoint.getValue(String.class));
+                        }
+                        storyList.add(list);
+                    }
+                    movieItem.setKey_storylines(storyList);
+
                 }else if (key.equals(KEY_INFORMATION)){
 
                 }else if (key.equals(ACTORS)){

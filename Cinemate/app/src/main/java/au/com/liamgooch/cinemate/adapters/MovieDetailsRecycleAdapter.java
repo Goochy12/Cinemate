@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import au.com.liamgooch.cinemate.R;
 
 import static au.com.liamgooch.cinemate.String_Values.ACTORS_CARD;
 import static au.com.liamgooch.cinemate.String_Values.NOTITLE_DETAILS_CARD;
+import static au.com.liamgooch.cinemate.String_Values.TITLE;
 import static au.com.liamgooch.cinemate.String_Values.TITLE_BULLET_CARD;
 import static au.com.liamgooch.cinemate.String_Values.TITLE_DETAILS_CARD;
 import static au.com.liamgooch.cinemate.String_Values.TAG;
@@ -26,6 +28,8 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
     private Context context;
     private MovieItem movieItem;
     private ArrayList<Integer> cardList;
+
+    private int storylinePos = 0;
 
     public MovieDetailsRecycleAdapter(Context context, MovieItem movieItem){
         this.context = context;
@@ -105,6 +109,15 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
             case ACTORS_CARD:
                 return;
             case TITLE_BULLET_CARD:
+                TitleBulletViewHolder titleBulletViewHolder;
+                titleBulletViewHolder = (TitleBulletViewHolder) holder;
+                titleBulletViewHolder.title.setText(movieItem.getKey_storylines().get(storylinePos).get(0));
+                for (int i = 1; i < movieItem.getKey_storylines().get(storylinePos).size(); i++){
+                    TextView t = new TextView(context);
+                    t.setText(movieItem.getKey_storylines().get(storylinePos).get(i));
+                    titleBulletViewHolder.linearLayout.addView(t);
+                }
+                storylinePos += 1;
                 return;
             case NOTITLE_DETAILS_CARD:
                 return;
@@ -120,9 +133,10 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
         return movieItem.getCardList().size();
     }
 
-    public void setItem(MovieItem item, ArrayList<Integer> cardList){
+    public void setItem(MovieItem item){
         this.movieItem = item;
-        this.cardList = cardList;
+//        this.cardList.clear();
+        this.cardList = item.getCardList();
         notifyDataSetChanged();
     }
 
@@ -154,8 +168,13 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
 
     private class TitleBulletViewHolder extends ViewHolder{
 
+        private TextView title;
+        private LinearLayout linearLayout;
+
         public TitleBulletViewHolder(@NonNull View itemView) {
             super(itemView);
+            title = (TextView) itemView.findViewById(R.id.title_bullet_title_textview);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.title_bullet_linearlayout);
         }
     }
 
