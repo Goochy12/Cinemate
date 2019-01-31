@@ -1,4 +1,4 @@
-package au.com.liamgooch.moviemate;
+package au.com.liamgooch.cinemate;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import au.com.liamgooch.moviemate.adapters.MovieDetailsRecycleAdapter;
+import au.com.liamgooch.cinemate.adapters.MovieDetailsRecycleAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,19 +23,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import static au.com.liamgooch.moviemate.String_Values.ACTORS;
-import static au.com.liamgooch.moviemate.String_Values.ALL_MOVIES;
-import static au.com.liamgooch.moviemate.String_Values.KEY_INFORMATION;
-import static au.com.liamgooch.moviemate.String_Values.KEY_STORYLINES;
-import static au.com.liamgooch.moviemate.String_Values.OTHER;
-import static au.com.liamgooch.moviemate.String_Values.SYNOPSIS;
-import static au.com.liamgooch.moviemate.String_Values.GENRE;
-import static au.com.liamgooch.moviemate.String_Values.MOVIE_ID;
-import static au.com.liamgooch.moviemate.String_Values.MOVIE_LOCATION;
-import static au.com.liamgooch.moviemate.String_Values.POSTER_LINK;
-import static au.com.liamgooch.moviemate.String_Values.RUNTIME;
-import static au.com.liamgooch.moviemate.String_Values.TITLE;
-import static au.com.liamgooch.moviemate.String_Values.TAG;
+import static au.com.liamgooch.cinemate.String_Values.ACTORS;
+import static au.com.liamgooch.cinemate.String_Values.ALL_MOVIES;
+import static au.com.liamgooch.cinemate.String_Values.KEY_INFORMATION;
+import static au.com.liamgooch.cinemate.String_Values.KEY_STORYLINES;
+import static au.com.liamgooch.cinemate.String_Values.OTHER;
+import static au.com.liamgooch.cinemate.String_Values.SYNOPSIS;
+import static au.com.liamgooch.cinemate.String_Values.GENRE;
+import static au.com.liamgooch.cinemate.String_Values.MOVIE_ID;
+import static au.com.liamgooch.cinemate.String_Values.MOVIE_LOCATION;
+import static au.com.liamgooch.cinemate.String_Values.POSTER_LINK;
+import static au.com.liamgooch.cinemate.String_Values.RUNTIME;
+import static au.com.liamgooch.cinemate.String_Values.TITLE;
+import static au.com.liamgooch.cinemate.String_Values.TAG;
 
 public class MovieDetails extends AppCompatActivity {
 

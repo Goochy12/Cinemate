@@ -1,14 +1,14 @@
-package au.com.liamgooch.moviemate;
+package au.com.liamgooch.cinemate;
 
 import android.util.Log;
 
 import java.util.ArrayList;
 
-import static au.com.liamgooch.moviemate.String_Values.ACTORS_CARD;
-import static au.com.liamgooch.moviemate.String_Values.NOTITLE_DETAILS_CARD;
-import static au.com.liamgooch.moviemate.String_Values.TITLE_BULLET_CARD;
-import static au.com.liamgooch.moviemate.String_Values.TITLE_DETAILS_CARD;
-import static au.com.liamgooch.moviemate.String_Values.TAG;
+import static au.com.liamgooch.cinemate.String_Values.ACTORS_CARD;
+import static au.com.liamgooch.cinemate.String_Values.NOTITLE_DETAILS_CARD;
+import static au.com.liamgooch.cinemate.String_Values.TITLE_BULLET_CARD;
+import static au.com.liamgooch.cinemate.String_Values.TITLE_DETAILS_CARD;
+import static au.com.liamgooch.cinemate.String_Values.TAG;
 
 public class MovieItem {
     private ArrayList<String> importantInfo;

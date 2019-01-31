@@ -1,4 +1,4 @@
-package au.com.liamgooch.moviemate;
+package au.com.liamgooch.cinemate;
 
 public class ActorItem {
 }

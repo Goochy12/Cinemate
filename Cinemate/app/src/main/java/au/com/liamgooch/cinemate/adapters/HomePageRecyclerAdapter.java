@@ -1,4 +1,4 @@
-package au.com.liamgooch.moviemate.adapters;
+package au.com.liamgooch.cinemate.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,16 +14,16 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import au.com.liamgooch.moviemate.MovieDetails;
-import au.com.liamgooch.moviemate.R;
+import au.com.liamgooch.cinemate.MovieDetails;
+import au.com.liamgooch.cinemate.R;
 
-import static au.com.liamgooch.moviemate.String_Values.MOVIE_LOCATION;
-import static au.com.liamgooch.moviemate.String_Values.SYNOPSIS;
-import static au.com.liamgooch.moviemate.String_Values.GENRE;
-import static au.com.liamgooch.moviemate.String_Values.MOVIE_ID;
-import static au.com.liamgooch.moviemate.String_Values.POSTER_LINK;
-import static au.com.liamgooch.moviemate.String_Values.RUNTIME;
-import static au.com.liamgooch.moviemate.String_Values.TITLE;
+import static au.com.liamgooch.cinemate.String_Values.MOVIE_LOCATION;
+import static au.com.liamgooch.cinemate.String_Values.SYNOPSIS;
+import static au.com.liamgooch.cinemate.String_Values.GENRE;
+import static au.com.liamgooch.cinemate.String_Values.MOVIE_ID;
+import static au.com.liamgooch.cinemate.String_Values.POSTER_LINK;
+import static au.com.liamgooch.cinemate.String_Values.RUNTIME;
+import static au.com.liamgooch.cinemate.String_Values.TITLE;
 
 public class HomePageRecyclerAdapter extends RecyclerView.Adapter<HomePageRecyclerAdapter.MovieCardViewHolder> {
 

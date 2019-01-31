@@ -1,4 +1,4 @@
-package au.com.liamgooch.moviemate;
+package au.com.liamgooch.cinemate;
 
 import android.util.Log;
 
@@ -12,14 +12,14 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 
-import static au.com.liamgooch.moviemate.String_Values.IMPORTANT_INFORMATION;
-import static au.com.liamgooch.moviemate.String_Values.SYNOPSIS;
-import static au.com.liamgooch.moviemate.String_Values.GENRE;
-import static au.com.liamgooch.moviemate.String_Values.NEW_RELEASES;
-import static au.com.liamgooch.moviemate.String_Values.POSTER_LINK;
-import static au.com.liamgooch.moviemate.String_Values.RUNTIME;
-import static au.com.liamgooch.moviemate.String_Values.TAG;
-import static au.com.liamgooch.moviemate.String_Values.TITLE;
+import static au.com.liamgooch.cinemate.String_Values.IMPORTANT_INFORMATION;
+import static au.com.liamgooch.cinemate.String_Values.SYNOPSIS;
+import static au.com.liamgooch.cinemate.String_Values.GENRE;
+import static au.com.liamgooch.cinemate.String_Values.NEW_RELEASES;
+import static au.com.liamgooch.cinemate.String_Values.POSTER_LINK;
+import static au.com.liamgooch.cinemate.String_Values.RUNTIME;
+import static au.com.liamgooch.cinemate.String_Values.TAG;
+import static au.com.liamgooch.cinemate.String_Values.TITLE;
 
 public class MovieDataGetter {
     private MainActivity mainActivity;

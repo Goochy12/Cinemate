@@ -1,4 +1,4 @@
-package au.com.liamgooch.moviemate;
+package au.com.liamgooch.cinemate;
 
 import android.annotation.SuppressLint;
 
@@ -10,7 +10,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import au.com.liamgooch.moviemate.adapters.HomePageRecyclerAdapter;
+import au.com.liamgooch.cinemate.adapters.HomePageRecyclerAdapter;
 
 import android.os.Bundle;
 import android.view.Menu;

@@ -1,4 +1,4 @@
-package au.com.liamgooch.moviemate.adapters;
+package au.com.liamgooch.cinemate.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
-import au.com.liamgooch.moviemate.MovieItem;
-import au.com.liamgooch.moviemate.R;
+import au.com.liamgooch.cinemate.MovieItem;
+import au.com.liamgooch.cinemate.R;
 
-import static au.com.liamgooch.moviemate.String_Values.ACTORS_CARD;
-import static au.com.liamgooch.moviemate.String_Values.NOTITLE_DETAILS_CARD;
-import static au.com.liamgooch.moviemate.String_Values.TITLE_BULLET_CARD;
-import static au.com.liamgooch.moviemate.String_Values.TITLE_DETAILS_CARD;
-import static au.com.liamgooch.moviemate.String_Values.TAG;
+import static au.com.liamgooch.cinemate.String_Values.ACTORS_CARD;
+import static au.com.liamgooch.cinemate.String_Values.NOTITLE_DETAILS_CARD;
+import static au.com.liamgooch.cinemate.String_Values.TITLE_BULLET_CARD;
+import static au.com.liamgooch.cinemate.String_Values.TITLE_DETAILS_CARD;
+import static au.com.liamgooch.cinemate.String_Values.TAG;
 
 public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder> {
 
