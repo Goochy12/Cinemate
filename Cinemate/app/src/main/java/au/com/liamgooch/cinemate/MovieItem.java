@@ -35,8 +35,8 @@ public class MovieItem {
         this.size = 0;;
     }
 
-    public MovieItem(ArrayList<String> importantInfo, ArrayList<ActorItem> actorList, ArrayList<ArrayList<String>> key_storylines,
-                     ArrayList<String> key_information, ArrayList<String> other_information){
+    public MovieItem(ArrayList<String> importantInfo, ArrayList<ArrayList<String>> key_storylines, ArrayList<String> key_information,
+                     ArrayList<ActorItem> actorList, ArrayList<String> other_information){
         this.importantInfo = importantInfo;
         location = importantInfo.get(0);
         movie_id = importantInfo.get(1);

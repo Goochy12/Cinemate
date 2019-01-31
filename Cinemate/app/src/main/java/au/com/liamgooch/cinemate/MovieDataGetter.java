@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 
 import static au.com.liamgooch.cinemate.String_Values.IMPORTANT_INFORMATION;
+import static au.com.liamgooch.cinemate.String_Values.RATING;
 import static au.com.liamgooch.cinemate.String_Values.SYNOPSIS;
 import static au.com.liamgooch.cinemate.String_Values.GENRE;
 import static au.com.liamgooch.cinemate.String_Values.NEW_RELEASES;
@@ -47,6 +48,7 @@ public class MovieDataGetter {
                         String synopsis = eachRelease.child(IMPORTANT_INFORMATION).child(SYNOPSIS).getValue(String.class);
                         String runtime = eachRelease.child(IMPORTANT_INFORMATION).child(RUNTIME).getValue(String.class);
                         String genre = eachRelease.child(IMPORTANT_INFORMATION).child(GENRE).getValue(String.class);
+                        String rating = eachRelease.child(IMPORTANT_INFORMATION).child(RATING).getValue(String.class);
                         String poster = eachRelease.child(IMPORTANT_INFORMATION).child(POSTER_LINK).getValue(String.class);
 
                         movie.add(location);
@@ -55,6 +57,7 @@ public class MovieDataGetter {
                         movie.add(synopsis);
                         movie.add(runtime);
                         movie.add(genre);
+                        movie.add(rating);
                         movie.add(poster);
 
                         //get other information
@@ -75,5 +78,9 @@ public class MovieDataGetter {
 
             }
         });
+    }
+
+    public void getKeyInfo(String title){
+
     }
 }

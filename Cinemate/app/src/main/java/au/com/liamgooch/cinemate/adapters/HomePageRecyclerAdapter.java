@@ -18,6 +18,7 @@ import au.com.liamgooch.cinemate.MovieDetails;
 import au.com.liamgooch.cinemate.R;
 
 import static au.com.liamgooch.cinemate.String_Values.MOVIE_LOCATION;
+import static au.com.liamgooch.cinemate.String_Values.RATING;
 import static au.com.liamgooch.cinemate.String_Values.SYNOPSIS;
 import static au.com.liamgooch.cinemate.String_Values.GENRE;
 import static au.com.liamgooch.cinemate.String_Values.MOVIE_ID;
@@ -55,7 +56,8 @@ public class HomePageRecyclerAdapter extends RecyclerView.Adapter<HomePageRecycl
         final String synopsis = movieList.get(position).get(3);
         final String runtime = movieList.get(position).get(4);
         final String genre = movieList.get(position).get(5);
-        final String poster = movieList.get(position).get(6);
+        final String rating = movieList.get(position).get(6);
+        final String poster = movieList.get(position).get(7);
 
         holder.title.setText(title);
         holder.synopsis.setText(synopsis);
@@ -76,6 +78,7 @@ public class HomePageRecyclerAdapter extends RecyclerView.Adapter<HomePageRecycl
                 movieDetails.putExtra(SYNOPSIS,synopsis);
                 movieDetails.putExtra(GENRE,genre);
                 movieDetails.putExtra(RUNTIME,runtime);
+                movieDetails.putExtra(RATING,rating);
                 movieDetails.putExtra(POSTER_LINK,poster);
 
                 context.startActivity(movieDetails);
