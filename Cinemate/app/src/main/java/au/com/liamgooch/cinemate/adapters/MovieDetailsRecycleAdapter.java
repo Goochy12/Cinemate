@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,10 +32,14 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
 
     private int storylinePos = 0;
 
-    public MovieDetailsRecycleAdapter(Context context, MovieItem movieItem){
+    private ProgressBar progressBar;
+
+    public MovieDetailsRecycleAdapter(Context context, MovieItem movieItem, ProgressBar progressBar){
         this.context = context;
         this.movieItem = movieItem;
         this.cardList = movieItem.getCardList();
+
+        this.progressBar = progressBar;
     }
 
     @Override
@@ -94,7 +99,7 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
 //            holder.linearLayout.addView(tx);
 //        }
 
-
+        progressBar.setVisibility(View.GONE);
 
         switch (holder.getItemViewType()){
             case TITLE_DETAILS_CARD:
@@ -120,6 +125,9 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
                 storylinePos += 1;
                 return;
             case NOTITLE_DETAILS_CARD:
+                NoTitleDetailsViewHolder noTitleDetailsViewHolder;
+                noTitleDetailsViewHolder = (NoTitleDetailsViewHolder) holder;
+                noTitleDetailsViewHolder.text.setText(movieItem.getSynopsis());
                 return;
             default:
                 Log.i(TAG, "getItemViewType: Error");
@@ -137,6 +145,8 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
         this.movieItem = item;
 //        this.cardList.clear();
         this.cardList = item.getCardList();
+        this.storylinePos = 0;
+
         notifyDataSetChanged();
     }
 
@@ -161,8 +171,11 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
 
     private class NoTitleDetailsViewHolder extends ViewHolder{
 
+        private TextView text;
+
         public NoTitleDetailsViewHolder(@NonNull View itemView) {
             super(itemView);
+            text = (TextView) itemView.findViewById(R.id.notitle_detail_textview);
         }
     }
 

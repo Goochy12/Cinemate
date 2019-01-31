@@ -57,6 +57,10 @@ public class MovieDetails extends AppCompatActivity {
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.movieDetailsProgressBar);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.animate();
+
         Intent intent = getIntent();
         ArrayList<String> importantInfo = new ArrayList<>();
         String location = intent.getStringExtra(MOVIE_LOCATION);
@@ -88,7 +92,7 @@ public class MovieDetails extends AppCompatActivity {
         movieItem = new MovieItem(importantInfo,null,null,null,null);
 
         // specify an adapter (see also next example)
-        MovieDetailsRecycleAdapter = new MovieDetailsRecycleAdapter(this,movieItem);
+        MovieDetailsRecycleAdapter = new MovieDetailsRecycleAdapter(this,movieItem, progressBar);
         recyclerView.setAdapter(MovieDetailsRecycleAdapter);
 
     }
