@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">Cinemate</string>
+    <string name="app_name">MovieMate</string>
+    <string name="settings_string">Settings</string>
+    <string name="about_string">About</string>
+    <string name="string_account">Account</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="card_runtime">Runtime:</string>
+    <string name="card_genre">Genre:</string>
+
+    <!--Movie details strings-->
+    <string name="movie_title" />
+    <string name="movie_description" />
+    <string name="movie_genre" />
+    <string name="movie_runtime" />
+
+    <!--TODO : Update ID-->
+    <string name="banner_ad_unit_id">ca-app-pub-6054741838157889/8733826793</string>
+    <string name="add_mob_app_id">ca-app-pub-6054741838157889~3016140841</string>
 </resources>
