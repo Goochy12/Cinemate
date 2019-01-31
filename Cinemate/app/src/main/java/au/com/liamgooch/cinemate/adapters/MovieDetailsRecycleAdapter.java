@@ -1,5 +1,7 @@
 package au.com.liamgooch.cinemate.adapters;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.text.SpannableString;
@@ -16,7 +18,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import au.com.liamgooch.cinemate.MovieItem;
@@ -94,7 +95,6 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        holder.title.setText(test.get(0));
@@ -126,7 +126,11 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
                 for (int i = 1; i < movieItem.getKey_storylines().get(storylinePos).size(); i++){
                     TextView t = new TextView(context);
                     SpannableString spannableString = SpannableString.valueOf(movieItem.getKey_storylines().get(storylinePos).get(i));
-                    spannableString.setSpan(new BulletSpan(10,context.getResources().getColor(R.color.black),10),0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        spannableString.setSpan(new BulletSpan(10,context.getResources().getColor(R.color.black,null),10),0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }else {
+                        spannableString = SpannableString.valueOf("\u25BA " + movieItem.getKey_storylines().get(storylinePos).get(i));
+                    }
                     t.setText(spannableString);
 //                    t.setText(movieItem.getKey_storylines().get(storylinePos).get(i));
                     titleBulletViewHolder.linearLayout.addView(t);
