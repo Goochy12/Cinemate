@@ -3,6 +3,8 @@ package au.com.liamgooch.cinemate.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -16,31 +18,38 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import au.com.liamgooch.cinemate.MovieDataGetter;
 import au.com.liamgooch.cinemate.R;
-import au.com.liamgooch.cinemate.adapters.HomePageRecyclerAdapter;
+import au.com.liamgooch.cinemate.fragments.adapters.NewReleasesRecyclerAdapter;
 import au.com.liamgooch.cinemate.data.FirebaseCallbacks;
 
-public class NewReleases extends Fragment {
+public class NewReleasesFragment extends Fragment {
 
     private ProgressBar newReleaseProgressBar;
 
     private RecyclerView recyclerView;
     private LinearLayoutManager recyclerViewLayoutManager;
-    private HomePageRecyclerAdapter homePageRecyclerAdapter;
+    private NewReleasesRecyclerAdapter homePageRecyclerAdapter;
 
     private ArrayList<ArrayList<String>> movieList = new ArrayList<>();
     private MovieDataGetter movieDataGetter;
 
     private ArrayList<ArrayList<String>> new_releases = new ArrayList<>();
 
-    public NewReleases() {
+    public NewReleasesFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_new_releases, container, false);
+    }
 
-        newReleaseProgressBar = (ProgressBar) getActivity().findViewById(R.id.mainProgressBar);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        newReleaseProgressBar = (ProgressBar) getActivity().findViewById(R.id.newReleasesProgressBar);
         newReleaseProgressBar.setVisibility(View.VISIBLE);
         newReleaseProgressBar.animate();
 
@@ -56,7 +65,7 @@ public class NewReleases extends Fragment {
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
 
         // specify an adapter (see also next example)
-        homePageRecyclerAdapter = new HomePageRecyclerAdapter(movieList,getContext());
+        homePageRecyclerAdapter = new NewReleasesRecyclerAdapter(movieList,getContext(),newReleaseProgressBar);
         recyclerView.setAdapter(homePageRecyclerAdapter);
 
         movieDataGetter = new MovieDataGetter(new FirebaseCallbacks() {
@@ -69,13 +78,7 @@ public class NewReleases extends Fragment {
             }
         });
         movieDataGetter.getReleaseCardData();
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_releases, container, false);
     }
 
     public void updateNewReleaseCards(ArrayList<ArrayList<String>> new_releases){

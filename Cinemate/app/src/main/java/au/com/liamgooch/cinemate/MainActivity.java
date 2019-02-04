@@ -8,22 +8,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import au.com.liamgooch.cinemate.adapters.HomePageRecyclerAdapter;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import au.com.liamgooch.cinemate.fragments.NewReleasesFragment;
+import au.com.liamgooch.cinemate.fragments.adapters.MainViewPagerAdapter;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.FirebaseApp;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -34,6 +31,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
 
     private AdView mAdView;
+
+    //fragment managers
+    private FragmentPagerAdapter adapterViewPager;
+    private ViewPager vpPager;
+    private FragmentManager fragMan;
+    //fragments
+    private NewReleasesFragment newReleasesFragment;
 
     @SuppressLint("NewApi")
     @Override
@@ -72,6 +76,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 }
 
     public void createFragments(){
+
+        newReleasesFragment = new NewReleasesFragment();
+
+        vpPager = (ViewPager) findViewById(R.id.main_viewpager);
+
+        adapterViewPager = new MainViewPagerAdapter(getSupportFragmentManager(), newReleasesFragment);
+        vpPager.setAdapter(adapterViewPager);
+        vpPager.setOffscreenPageLimit(3);
+        vpPager.addOnPageChangeListener(mPageChangeListener);
+
+    }
+
+    private ViewPager.OnPageChangeListener mPageChangeListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            changePage(position);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
+
+    private void changePage(int position){
 
     }
 

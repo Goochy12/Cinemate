@@ -1,4 +1,4 @@
-package au.com.liamgooch.cinemate.adapters;
+package au.com.liamgooch.cinemate.fragments.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -27,14 +28,18 @@ import static au.com.liamgooch.cinemate.String_Values.POSTER_LINK;
 import static au.com.liamgooch.cinemate.String_Values.RUNTIME;
 import static au.com.liamgooch.cinemate.String_Values.TITLE;
 
-public class HomePageRecyclerAdapter extends RecyclerView.Adapter<HomePageRecyclerAdapter.MovieCardViewHolder> {
+public class NewReleasesRecyclerAdapter extends RecyclerView.Adapter<NewReleasesRecyclerAdapter.MovieCardViewHolder> {
 
     private ArrayList<ArrayList<String>> movieList;
     private Context context;
 
-    public HomePageRecyclerAdapter(ArrayList<ArrayList<String>> movieList, Context context) {
+    private ProgressBar newReleasesProgressBar;
+
+    public NewReleasesRecyclerAdapter(ArrayList<ArrayList<String>> movieList, Context context, ProgressBar newReleasesProgressBar) {
         this.movieList = movieList;
         this.context = context;
+
+        this.newReleasesProgressBar = newReleasesProgressBar;
     }
 
     @NonNull
@@ -44,7 +49,7 @@ public class HomePageRecyclerAdapter extends RecyclerView.Adapter<HomePageRecycl
         
         MovieCardViewHolder hVH = new MovieCardViewHolder(v);
 
-//        homeProgressBar.setVisibility(View.GONE);
+        newReleasesProgressBar.setVisibility(View.GONE);
 
         return hVH;
     }
