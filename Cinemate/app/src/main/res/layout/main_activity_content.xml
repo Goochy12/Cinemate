@@ -11,28 +11,6 @@
     tools:context="au.com.liamgooch.cinemate.MainActivity"
     tools:showIn="@layout/appbar_main">
 
-    <ProgressBar
-        android:id="@+id/mainProgressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/new_releases_recycler_view"
-        android:scrollbars="vertical" />
-
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="wrap_content"
@@ -47,10 +25,10 @@
         android:layout_marginBottom="8dp"
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id"
-        ads:layout_constraintVertical_bias="1"
         ads:layout_constraintBottom_toBottomOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toTopOf="@+id/new_releases_recycler_view" />
+        ads:layout_constraintTop_toTopOf="parent"
+        ads:layout_constraintVertical_bias="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
