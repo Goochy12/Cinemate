@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import au.com.liamgooch.cinemate.MovieDataGetter;
 import au.com.liamgooch.cinemate.R;
 import au.com.liamgooch.cinemate.adapters.HomePageRecyclerAdapter;
+import au.com.liamgooch.cinemate.data.FirebaseCallbacks;
 
 public class NewReleases extends Fragment {
 
@@ -28,6 +29,8 @@ public class NewReleases extends Fragment {
 
     private ArrayList<ArrayList<String>> movieList = new ArrayList<>();
     private MovieDataGetter movieDataGetter;
+
+    private ArrayList<ArrayList<String>> new_releases = new ArrayList<>();
 
     public NewReleases() {
         // Required empty public constructor
@@ -56,7 +59,15 @@ public class NewReleases extends Fragment {
         homePageRecyclerAdapter = new HomePageRecyclerAdapter(movieList,getContext());
         recyclerView.setAdapter(homePageRecyclerAdapter);
 
-        movieDataGetter = new MovieDataGetter(this);
+        movieDataGetter = new MovieDataGetter(new FirebaseCallbacks() {
+            @Override
+            public ArrayList<ArrayList<String>> returnMovies(ArrayList<ArrayList<String>> movie_list) {
+                new_releases = new ArrayList<>();
+                new_releases = movie_list;
+                updateNewReleaseCards(new_releases);
+                return null;
+            }
+        });
         movieDataGetter.getReleaseCardData();
     }
 

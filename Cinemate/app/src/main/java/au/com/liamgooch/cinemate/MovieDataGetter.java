@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import au.com.liamgooch.cinemate.data.FirebaseCallbacks;
 
 import static au.com.liamgooch.cinemate.String_Values.IMPORTANT_INFORMATION;
 import static au.com.liamgooch.cinemate.String_Values.RATING;
@@ -26,9 +27,10 @@ import static au.com.liamgooch.cinemate.String_Values.RELEASE;
 public class MovieDataGetter {
     private MainActivity mainActivity;
     private ArrayList<ArrayList<String>> new_releases = new ArrayList<>();
+    private FirebaseCallbacks firebaseCallbacks;
 
-    public MovieDataGetter(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
+    public MovieDataGetter(FirebaseCallbacks firebaseCallbacks) {
+        this.firebaseCallbacks = firebaseCallbacks;
     }
 
     public void getReleaseCardData(){
@@ -73,7 +75,8 @@ public class MovieDataGetter {
                     }
                 }
 
-                mainActivity.updateNewReleaseCards(new_releases);
+//                mainActivity.updateNewReleaseCards(new_releases);
+                firebaseCallbacks.returnMovies(new_releases);
             }
 
             @Override

@@ -33,14 +33,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBar actionbar;
     private ActionBarDrawerToggle toggle;
 
-    private RecyclerView recyclerView;
-    private LinearLayoutManager recyclerViewLayoutManager;
-    private HomePageRecyclerAdapter homePageRecyclerAdapter;
-
-    private ArrayList<ArrayList<String>> movieList = new ArrayList<>();
-    private MovieDataGetter movieDataGetter;
-
-    private ProgressBar mainProgressBar;
     private AdView mAdView;
 
     @SuppressLint("NewApi")
@@ -52,11 +44,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setTheme(R.style.CinemateMainTheme);
         setContentView(R.layout.activity_main);
-
-        //remove
-        mainProgressBar = (ProgressBar) findViewById(R.id.mainProgressBar);
-        mainProgressBar.setVisibility(View.VISIBLE);
-        mainProgressBar.animate();
 
         MobileAds.initialize(this, String.valueOf(R.string.add_mob_app_id));
 
@@ -77,25 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        //recycler view
-        recyclerView = (RecyclerView) findViewById(R.id.new_releases_recycler_view);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        recyclerViewLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(recyclerViewLayoutManager);
-
-        // specify an adapter (see also next example)
-        homePageRecyclerAdapter = new HomePageRecyclerAdapter(movieList,this);
-        recyclerView.setAdapter(homePageRecyclerAdapter);
-
-        movieDataGetter = new MovieDataGetter(this);
-        movieDataGetter.getReleaseCardData();
-
 //        mAdView = findViewById(R.id.adView);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
@@ -105,12 +73,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void createFragments(){
 
-    }
-
-    //remove
-    public void updateNewReleaseCards(ArrayList<ArrayList<String>> new_releases){
-        mainProgressBar.setVisibility(View.GONE);
-        homePageRecyclerAdapter.setMovieList(new_releases);
     }
 
     @Override
