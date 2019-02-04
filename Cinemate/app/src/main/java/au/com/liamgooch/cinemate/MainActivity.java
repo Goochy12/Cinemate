@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setTheme(R.style.CinemateMainTheme);
         setContentView(R.layout.activity_main);
 
+        //remove
         mainProgressBar = (ProgressBar) findViewById(R.id.mainProgressBar);
         mainProgressBar.setVisibility(View.VISIBLE);
         mainProgressBar.animate();
@@ -98,8 +99,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        mAdView = findViewById(R.id.adView);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
+
+        createFragments();
 }
 
+    public void createFragments(){
+
+    }
+
+    //remove
     public void updateNewReleaseCards(ArrayList<ArrayList<String>> new_releases){
         mainProgressBar.setVisibility(View.GONE);
         homePageRecyclerAdapter.setMovieList(new_releases);
