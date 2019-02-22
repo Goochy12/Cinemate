@@ -112,7 +112,7 @@ public class MovieDetails extends AppCompatActivity {
                     //bullet points
                     ArrayList<ArrayList<String>> storyList = new ArrayList<>();
                     for (DataSnapshot eachSection : eachFact.getChildren()){
-                        String title = eachSection.getKey();
+                        String title = formatStrings(eachSection.getKey());
                         ArrayList<String> list = new ArrayList<>();
                         list.add(title);
                         for (DataSnapshot eachPoint : eachSection.getChildren()){
@@ -140,4 +140,17 @@ public class MovieDetails extends AppCompatActivity {
 
         }
     };
+
+    private String formatStrings(String name){
+        String newName = name;
+
+        newName = newName.toLowerCase();
+        newName = newName.substring(0,1).toUpperCase() + newName.substring(1);
+        for (int j = 0; j < newName.length();j++){
+            if (newName.substring(j,j+1).equals("_")){
+                newName = newName.substring(0,j) + " " + newName.substring(j+1,j+2).toUpperCase() + newName.substring(j+2);
+            }
+        }
+        return newName;
+    }
 }
