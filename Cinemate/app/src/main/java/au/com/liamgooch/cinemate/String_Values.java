@@ -25,5 +25,6 @@ public class String_Values {
     public static final int TITLE_BULLET_CARD = 1;
     public static final int NOTITLE_DETAILS_CARD = 2;
     public static final int ACTORS_CARD = 3;
+    public static final int OTHER_CARD = 4;
 
 }

@@ -25,6 +25,7 @@ import au.com.liamgooch.cinemate.R;
 
 import static au.com.liamgooch.cinemate.String_Values.ACTORS_CARD;
 import static au.com.liamgooch.cinemate.String_Values.NOTITLE_DETAILS_CARD;
+import static au.com.liamgooch.cinemate.String_Values.OTHER_CARD;
 import static au.com.liamgooch.cinemate.String_Values.TITLE;
 import static au.com.liamgooch.cinemate.String_Values.TITLE_BULLET_CARD;
 import static au.com.liamgooch.cinemate.String_Values.TITLE_DETAILS_CARD;
@@ -60,6 +61,8 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
                 return TITLE_BULLET_CARD;
             case NOTITLE_DETAILS_CARD:
                 return NOTITLE_DETAILS_CARD;
+            case OTHER_CARD:
+                return OTHER_CARD;
             default:
                 Log.i(TAG, "getItemViewType: Error");
                 return 0;
@@ -87,6 +90,9 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
                 View detailsView = LayoutInflater.from(parent.getContext()).inflate(R.layout.notitle_detail_card,parent,false);
                 NoTitleDetailsViewHolder dVH = new NoTitleDetailsViewHolder(detailsView);
                 return dVH;
+            case OTHER_CARD:
+                View otherView = LayoutInflater.from(parent.getContext()).inflate(R.layout.title_other_card,parent,false);
+                OtherCardViewHolder oVH = new OtherCardViewHolder(otherView);
             default:
                 Log.i(TAG, "onCreateViewHolder: Error");
                 View importantInfoViewError = LayoutInflater.from(parent.getContext()).inflate(R.layout.title_details_card,parent,false);
@@ -207,6 +213,12 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
     private class ActorsViewHolder extends ViewHolder{
 
         public ActorsViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+
+    private class OtherCardViewHolder extends ViewHolder{
+        public OtherCardViewHolder(@NonNull View itemView) {
             super(itemView);
         }
     }

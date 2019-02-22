@@ -24,7 +24,7 @@ public class MovieItem {
 
     private ArrayList<ActorItem> actorList = new ArrayList<>();
     private ArrayList<ArrayList<String>> key_storylines = new ArrayList<>();
-    private ArrayList<String> key_information = new ArrayList<>();
+    private ArrayList<ArrayList<String>> key_information = new ArrayList<>();
     private ArrayList<String> other_information = new ArrayList<>();
 
     private ArrayList<Integer> cardList = new ArrayList<>();
@@ -35,7 +35,7 @@ public class MovieItem {
         this.size = 0;;
     }
 
-    public MovieItem(ArrayList<String> importantInfo, ArrayList<ArrayList<String>> key_storylines, ArrayList<String> key_information,
+    public MovieItem(ArrayList<String> importantInfo, ArrayList<ArrayList<String>> key_storylines, ArrayList<ArrayList<String>> key_information,
                      ArrayList<ActorItem> actorList, ArrayList<String> other_information){
         this.importantInfo = importantInfo;
         location = importantInfo.get(0);
@@ -131,11 +131,11 @@ public class MovieItem {
         setSize(sizeSetter());
     }
 
-    public ArrayList<String> getKey_information() {
+    public ArrayList<ArrayList<String>> getKey_information() {
         return key_information;
     }
 
-    public void setKey_information(ArrayList<String> key_information) {
+    public void setKey_information(ArrayList<ArrayList<String>> key_information) {
         this.key_information = key_information;
         setSize(sizeSetter());
     }
