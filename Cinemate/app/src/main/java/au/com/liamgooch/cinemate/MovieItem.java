@@ -5,7 +5,9 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import static au.com.liamgooch.cinemate.String_Values.ACTORS_CARD;
+import static au.com.liamgooch.cinemate.String_Values.INFO_CARD;
 import static au.com.liamgooch.cinemate.String_Values.NOTITLE_DETAILS_CARD;
+import static au.com.liamgooch.cinemate.String_Values.OTHER_CARD;
 import static au.com.liamgooch.cinemate.String_Values.TITLE_BULLET_CARD;
 import static au.com.liamgooch.cinemate.String_Values.TITLE_DETAILS_CARD;
 import static au.com.liamgooch.cinemate.String_Values.TAG;
@@ -25,7 +27,9 @@ public class MovieItem {
     private ArrayList<ActorItem> actorList = new ArrayList<>();
     private ArrayList<ArrayList<String>> key_storylines = new ArrayList<>();
     private ArrayList<ArrayList<String>> key_information = new ArrayList<>();
-    private ArrayList<String> other_information = new ArrayList<>();
+    private ArrayList<ArrayList<String>> other_information = new ArrayList<>();
+
+    private ArrayList<ArrayList<String>> detailsList = new ArrayList<>();
 
     private ArrayList<Integer> cardList = new ArrayList<>();
 
@@ -36,7 +40,7 @@ public class MovieItem {
     }
 
     public MovieItem(ArrayList<String> importantInfo, ArrayList<ArrayList<String>> key_storylines, ArrayList<ArrayList<String>> key_information,
-                     ArrayList<ActorItem> actorList, ArrayList<String> other_information){
+                     ArrayList<ActorItem> actorList, ArrayList<ArrayList<String>> other_information){
         this.importantInfo = importantInfo;
         location = importantInfo.get(0);
         movie_id = importantInfo.get(1);
@@ -70,33 +74,42 @@ public class MovieItem {
         int s = 0;
 
         cardList.clear();
+        detailsList.clear();
 
         if (importantInfo != null){
             cardList.add(TITLE_DETAILS_CARD);
+            detailsList.add(importantInfo);
             s += 1;
         }
         if (synopsis != null){
             cardList.add(NOTITLE_DETAILS_CARD);
+            ArrayList<String> syn = new ArrayList<>();
+            syn.add(synopsis);
+            detailsList.add(syn);
             s += 1;
         }
         if (actorList != null){
             cardList.add(ACTORS_CARD);
+//            detailsList.add();
         }
         if (key_storylines != null){
             for (int i = 0; i < key_storylines.size(); i++){
                 cardList.add(TITLE_BULLET_CARD);
+                detailsList.add(key_storylines.get(i));
                 s += 1;
             }
         }
         if (key_information != null){
             for (int i = 0; i < key_information.size(); i++){
-                cardList.add(TITLE_BULLET_CARD);
+                cardList.add(INFO_CARD);
+                detailsList.add(key_information.get(i));
                 s += 1;
             }
         }
         if (other_information != null){
             for (int i = 0; i < other_information.size(); i++){
-                cardList.add(TITLE_BULLET_CARD);
+                cardList.add(OTHER_CARD);
+                detailsList.add(other_information.get(i));
                 s += 1;
             }
         }
@@ -140,11 +153,11 @@ public class MovieItem {
         setSize(sizeSetter());
     }
 
-    public ArrayList<String> getOther_information() {
+    public ArrayList<ArrayList<String>> getOther_information() {
         return other_information;
     }
 
-    public void setOther_information(ArrayList<String> other_information) {
+    public void setOther_information(ArrayList<ArrayList<String>> other_information) {
         this.other_information = other_information;
         setSize(sizeSetter());
     }
@@ -243,5 +256,13 @@ public class MovieItem {
 
     public void setRelease(String release) {
         this.release = release;
+    }
+
+    public ArrayList<ArrayList<String>> getDetailsList() {
+        return detailsList;
+    }
+
+    public void setDetailsList(ArrayList<ArrayList<String>> detailsList) {
+        this.detailsList = detailsList;
     }
 }

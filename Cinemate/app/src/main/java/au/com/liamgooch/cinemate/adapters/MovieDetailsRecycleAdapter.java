@@ -24,6 +24,7 @@ import au.com.liamgooch.cinemate.MovieItem;
 import au.com.liamgooch.cinemate.R;
 
 import static au.com.liamgooch.cinemate.String_Values.ACTORS_CARD;
+import static au.com.liamgooch.cinemate.String_Values.INFO_CARD;
 import static au.com.liamgooch.cinemate.String_Values.NOTITLE_DETAILS_CARD;
 import static au.com.liamgooch.cinemate.String_Values.OTHER_CARD;
 import static au.com.liamgooch.cinemate.String_Values.TITLE;
@@ -37,7 +38,9 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
     private MovieItem movieItem;
     private ArrayList<Integer> cardList;
 
-    private int storylinePos = 0;
+//    private int storylinePos = 0;
+//    private int keyInfoPos = 0;
+//    private int otherInfoPos = 0;
 
     private ProgressBar progressBar;
 
@@ -61,6 +64,8 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
                 return TITLE_BULLET_CARD;
             case NOTITLE_DETAILS_CARD:
                 return NOTITLE_DETAILS_CARD;
+            case INFO_CARD:
+                return INFO_CARD;
             case OTHER_CARD:
                 return OTHER_CARD;
             default:
@@ -90,9 +95,14 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
                 View detailsView = LayoutInflater.from(parent.getContext()).inflate(R.layout.notitle_detail_card,parent,false);
                 NoTitleDetailsViewHolder dVH = new NoTitleDetailsViewHolder(detailsView);
                 return dVH;
+            case INFO_CARD:
+                View infoView = LayoutInflater.from(parent.getContext()).inflate(R.layout.title_other_card,parent,false);
+                OtherCardViewHolder iVH = new OtherCardViewHolder(infoView);
+                return iVH;
             case OTHER_CARD:
                 View otherView = LayoutInflater.from(parent.getContext()).inflate(R.layout.title_other_card,parent,false);
                 OtherCardViewHolder oVH = new OtherCardViewHolder(otherView);
+                return oVH;
             default:
                 Log.i(TAG, "onCreateViewHolder: Error");
                 View importantInfoViewError = LayoutInflater.from(parent.getContext()).inflate(R.layout.title_details_card,parent,false);
@@ -113,6 +123,7 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
 
         progressBar.setVisibility(View.GONE);
 
+
         switch (holder.getItemViewType()){
             case TITLE_DETAILS_CARD:
                 TitleDetailsViewHolder viewHolder;
@@ -128,32 +139,43 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
             case TITLE_BULLET_CARD:
                 TitleBulletViewHolder titleBulletViewHolder;
                 titleBulletViewHolder = (TitleBulletViewHolder) holder;
-                titleBulletViewHolder.title.setText(movieItem.getKey_storylines().get(storylinePos).get(0));
-                for (int i = 1; i < movieItem.getKey_storylines().get(storylinePos).size(); i++){
+
+                titleBulletViewHolder.title.setText(movieItem.getDetailsList().get(position).get(0));
+                for (int i = 1; i < movieItem.getDetailsList().get(position).size(); i++){
                     TextView t = new TextView(context);
-                    SpannableString spannableString = SpannableString.valueOf(movieItem.getKey_storylines().get(storylinePos).get(i));
+                    SpannableString spannableString = SpannableString.valueOf(movieItem.getDetailsList().get(position).get(i));
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                         spannableString.setSpan(new BulletSpan(10,context.getResources().getColor(R.color.black,null),10),0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }else {
-                        spannableString = SpannableString.valueOf("\u25BA " + movieItem.getKey_storylines().get(storylinePos).get(i));
+                        spannableString = SpannableString.valueOf("\u25BA " + movieItem.getDetailsList().get(position).get(i));
                     }
                     t.setText(spannableString);
 //                    t.setText(movieItem.getKey_storylines().get(storylinePos).get(i));
                     titleBulletViewHolder.linearLayout.addView(t);
                 }
-                storylinePos += 1;
                 return;
             case NOTITLE_DETAILS_CARD:
                 NoTitleDetailsViewHolder noTitleDetailsViewHolder;
                 noTitleDetailsViewHolder = (NoTitleDetailsViewHolder) holder;
                 noTitleDetailsViewHolder.text.setText(movieItem.getSynopsis());
                 return;
+            case INFO_CARD:
+                OtherCardViewHolder infoViewHolder;
+                infoViewHolder = (OtherCardViewHolder) holder;
+                infoViewHolder.title.setText(movieItem.getDetailsList().get(position).get(0));
+                infoViewHolder.other.setText(movieItem.getDetailsList().get(position).get(1));
+                return;
+            case OTHER_CARD:
+                OtherCardViewHolder otherCardViewHolder;
+                otherCardViewHolder = (OtherCardViewHolder) holder;
+                otherCardViewHolder.title.setText(movieItem.getDetailsList().get(position).get(0));
+                otherCardViewHolder.other.setText(movieItem.getDetailsList().get(position).get(1));
+                return;
             default:
                 Log.i(TAG, "getItemViewType: Error");
         }
 
     }
-
 
     @Override
     public int getItemCount() {
@@ -164,7 +186,6 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
         this.movieItem = item;
 //        this.cardList.clear();
         this.cardList = item.getCardList();
-        this.storylinePos = 0;
 
         notifyDataSetChanged();
     }
@@ -218,8 +239,14 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
     }
 
     private class OtherCardViewHolder extends ViewHolder{
+
+        private TextView title;
+        private TextView other;
+
         public OtherCardViewHolder(@NonNull View itemView) {
             super(itemView);
+            title = (TextView) itemView.findViewById(R.id.title_other_title_textview);
+            other = (TextView) itemView.findViewById(R.id.title_other_detail_textview);
         }
     }
 }

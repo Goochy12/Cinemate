@@ -129,15 +129,24 @@ public class MovieDetails extends AppCompatActivity {
                         String title = formatStrings(eachSection.getKey());
                         ArrayList<String> list = new ArrayList<>();
                         list.add(title);
-                        for (DataSnapshot eachPoint : eachSection.getChildren()){
-                            list.add(eachPoint.getValue(String.class));
-                        }
+                        list.add(eachSection.getValue(String.class));
+                        infoList.add(list);
                     }
                     movieItem.setKey_information(infoList);
 
                 }else if (key.equals(ACTORS)){
 
                 }else if (key.equals(OTHER)){
+
+                    ArrayList<ArrayList<String>> otherList = new ArrayList<>();
+                    for (DataSnapshot eachSection : eachFact.getChildren()){
+                        String title = formatStrings(eachSection.getKey());
+                        ArrayList<String> list = new ArrayList<>();
+                        list.add(title);
+                        list.add(eachSection.getValue(String.class));
+                        otherList.add(list);
+                    }
+                    movieItem.setOther_information(otherList);
 
                 }
                 if (eachFact.getChildren().iterator().hasNext()){

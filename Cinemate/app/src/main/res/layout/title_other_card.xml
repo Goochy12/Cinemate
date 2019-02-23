@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TEST SYNOPSIS"
-            android:id="@+id/notitle_detail_textview"/>
+            android:id="@+id/title_other_detail_textview"/>
     </LinearLayout>
 
 
