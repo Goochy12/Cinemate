@@ -10,6 +10,7 @@ import au.com.liamgooch.cinemate.adapters.MovieDetailsRecycleAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -135,6 +136,17 @@ public class MovieDetails extends AppCompatActivity {
                     movieItem.setKey_information(infoList);
 
                 }else if (key.equals(ACTORS)){
+
+                    ArrayList<ArrayList<String>> actorList = new ArrayList<>();
+                    for (DataSnapshot eachActor : eachFact.getChildren()){
+                        String actorName = formatStrings(eachActor.getKey());
+
+                        ArrayList<String> actorDetails = new ArrayList<>();
+
+                        for (DataSnapshot eachDetail : eachActor.getChildren()){
+
+                        }
+                    }
 
                 }else if (key.equals(OTHER)){
 
