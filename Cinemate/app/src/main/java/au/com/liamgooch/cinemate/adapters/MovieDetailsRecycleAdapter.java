@@ -2,6 +2,7 @@ package au.com.liamgooch.cinemate.adapters;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.text.SpannableString;
@@ -18,10 +19,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import au.com.liamgooch.cinemate.MovieItem;
 import au.com.liamgooch.cinemate.R;
+import au.com.liamgooch.cinemate.fragments.adapters.NewReleasesRecyclerAdapter;
 
 import static au.com.liamgooch.cinemate.String_Values.ACTORS_CARD;
 import static au.com.liamgooch.cinemate.String_Values.INFO_CARD;
@@ -135,6 +138,13 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
                 viewHolder.genre.setText(movieItem.getGenre());
                 return;
             case ACTORS_CARD:
+                ActorsViewHolder actorsViewHolder;
+                actorsViewHolder = (ActorsViewHolder) holder;
+
+                actorsViewHolder.actorRecyclerView.setLayoutManager(actorsViewHolder.linearLayoutManager);
+
+                actorsViewHolder.actorRecyclerView.setAdapter(actorsViewHolder.actorsRecycleAdapter);
+
                 return;
             case TITLE_BULLET_CARD:
                 TitleBulletViewHolder titleBulletViewHolder;
@@ -233,8 +243,16 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
 
     private class ActorsViewHolder extends ViewHolder{
 
+        private RecyclerView actorRecyclerView;
+        private LinearLayoutManager linearLayoutManager;
+        private ActorsRecycleAdapter actorsRecycleAdapter;
+
         public ActorsViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            actorRecyclerView = (RecyclerView) itemView.findViewById(R.id.actor_card_recyclerView);
+            linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true);
+            actorsRecycleAdapter = new ActorsRecycleAdapter(movieItem.getActorList(),context);
         }
     }
 

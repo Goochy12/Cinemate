@@ -21,6 +21,11 @@ public class String_Values {
     public static final String RELEASE = "release";
     public static final String POSTER_LINK = "poster_link";
 
+    public static final String ACTOR_NAME = "name";
+    public static final String CHARACTER = "character";
+    public static final String IMAGE = "image";
+    public static final String MOVIES = "movies";
+
     public static final int TITLE_DETAILS_CARD = 0;
     public static final int TITLE_BULLET_CARD = 1;
     public static final int NOTITLE_DETAILS_CARD = 2;

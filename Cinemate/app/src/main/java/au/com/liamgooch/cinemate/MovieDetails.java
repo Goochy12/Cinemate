@@ -25,7 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import static au.com.liamgooch.cinemate.String_Values.ACTORS;
+import static au.com.liamgooch.cinemate.String_Values.ACTOR_NAME;
 import static au.com.liamgooch.cinemate.String_Values.ALL_MOVIES;
+import static au.com.liamgooch.cinemate.String_Values.CHARACTER;
+import static au.com.liamgooch.cinemate.String_Values.IMAGE;
 import static au.com.liamgooch.cinemate.String_Values.KEY_INFORMATION;
 import static au.com.liamgooch.cinemate.String_Values.KEY_STORYLINES;
 import static au.com.liamgooch.cinemate.String_Values.OTHER;
@@ -137,16 +140,24 @@ public class MovieDetails extends AppCompatActivity {
 
                 }else if (key.equals(ACTORS)){
 
-                    ArrayList<ArrayList<String>> actorList = new ArrayList<>();
+                    ArrayList<ActorItem> actorList = new ArrayList<>();
                     for (DataSnapshot eachActor : eachFact.getChildren()){
-                        String actorName = formatStrings(eachActor.getKey());
-
-                        ArrayList<String> actorDetails = new ArrayList<>();
 
                         for (DataSnapshot eachDetail : eachActor.getChildren()){
+                            String actorName = eachDetail.child(ACTOR_NAME).getValue(String.class);
+                            String character = eachDetail.child(CHARACTER).getValue(String.class);
+                            String image = eachDetail.child(IMAGE).getValue(String.class);
 
+                            ArrayList<String> actorInfo = new ArrayList<>();
+                            for(DataSnapshot eachInfo : eachDetail.getChildren()){
+                                actorInfo.add(eachInfo.getValue(String.class));
+                            }
+
+                            ActorItem actorItem = new ActorItem(actorName,character,image,actorInfo);
+                            actorList.add(actorItem);
                         }
                     }
+                    movieItem.setActorList(actorList);
 
                 }else if (key.equals(OTHER)){
 
