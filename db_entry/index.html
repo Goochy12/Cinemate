@@ -1,0 +1,95 @@
+<!doctype html>
+<html version="0.1">
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="scripts.js?v=0.2" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<title>Cinemate Database Entry</title>
+<h1>Cinemate Database Entry</h1>
+</head>
+
+<body>
+<input type="button" name="resetForm" value="RESET FORM" onclick="resetForm()"/>
+<!--action="/action_page.php"--> 
+<!--	onSubmit="compile(this)"-->
+<!--	name="movieDataForm" action="summary.php" method="post"-->
+<form id="movieDataForm" onSubmit="onSub()">
+  <h2>Important Information</h2>
+  <strong>Title:</strong>
+  <input type="text" name="title">
+  <br>
+  <strong>Release:</strong>
+  <input type="date" name="release">
+  <br>
+  <strong>Rating:</strong>
+  <input type="text" name="rating">
+  <br>
+  <strong>Runtime (m):</strong>
+  <input type="text" name="runtime">
+  <br>
+  <strong>Genre:</strong>
+  <input type="text" name="genre">
+  <br>
+  <strong>Trailer:</strong>
+  <input type="link" name="trailer">
+  <br>
+  <strong>Poster Link:</strong>
+  <input type="link" name="poster_link">
+  <br>
+  <strong>Synopsis:</strong>
+  <input type="text" name="synopsis">
+  <hr>
+  <h2>Key Storylines </h2>
+  <h3>Key Movie Storylines</h3>
+  <div id="movieStoryLineDiv"></div>
+  <button type="button" onclick="addStorylineButtonOnClick('movieStoryLine','movieStoryLineDiv')">Add Storyline</button>
+  <h3>Key Real-Life Storylines</h3>
+  <div id="realStoryLineDiv"></div>
+  <button type="button" onclick="addStorylineButtonOnClick('realStoryLine','realStoryLineDiv')">Add Storyline</button>
+  <hr>
+  <h2>Key Information</h2>
+  <strong>Part of a series?</strong>
+  <input type="text" name="part_of_a_series">
+  <br>
+  <strong>Franchise Location?</strong>
+  <input type="text" name="franchise_location">
+  <br>
+  <strong>Timeline Location?</strong>
+  <input type="text" name="timeline_location">
+  <hr>
+	
+  <h2>Actors</h2>
+  <div id="actorDivHTML"></div>
+  <button type="button" onclick="addActor('actorDivHTML')">Add Actor</button>
+  <hr>
+	
+  <h2>Other</h2>
+  <strong>Budget:</strong>
+  <input type="text" name="budget">
+  <br>
+  <strong>After Credit Scene?</strong>
+  <input type="text" name="after_credit">
+  <br>
+	
+  <input type="submit" name="submit_button" value="Submit">
+	<script src="https://code.jquery.com/jquery-1.10.2.js">
+		function onSub(){
+		$("#movieDataForm").submit(function(event){
+        event.preventDefault();
+        var data = $("#dataForm").serializeArray();
+        //POST to PHP
+        $.ajax({
+           type: "POST",
+           url: "summary.php",
+           data: JSON.Stringify(data),
+           success: function(response){
+               //Do whatever you want when form is sent.
+           },
+           dataType: "JSON"
+        });
+}); 
+		}
+	</script>
+</form>
+</body>
+</html>
