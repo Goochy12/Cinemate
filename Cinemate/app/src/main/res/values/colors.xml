@@ -6,4 +6,13 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="grey">#616161</color>
+
+    <color name="colour1">#630007</color>
+    <color name="colour2">#AC313A</color>
+    <color name="colour3">#88121B</color>
+    <color name="colour4">#3F0005</color>
+    <color name="colour5">#1F0002</color>
+    <color name="colour6">#202020</color>
+    <color name="colour7">#252525</color>
+    <color name="text_colour">#7A0502</color>
 </resources>
