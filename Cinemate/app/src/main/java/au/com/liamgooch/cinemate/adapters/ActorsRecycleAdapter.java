@@ -5,6 +5,7 @@ import android.os.Build;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.BulletSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import au.com.liamgooch.cinemate.ActorItem;
 import au.com.liamgooch.cinemate.R;
+
+import static au.com.liamgooch.cinemate.String_Values.TAG;
 
 public class ActorsRecycleAdapter extends RecyclerView.Adapter<ActorsRecycleAdapter.ActorDetailsCardVH> {
 
@@ -48,8 +51,6 @@ public class ActorsRecycleAdapter extends RecyclerView.Adapter<ActorsRecycleAdap
         String characterName = this.actorList.get(position).getCharacterName();
         String image = this.actorList.get(position).getImage();
 
-        ArrayList<String> actorInfo = this.actorList.get(position).getInfoList();
-
         holder.actorName.setText("("+actorName+")");
         holder.characterName.setText(characterName);
 
@@ -57,16 +58,16 @@ public class ActorsRecycleAdapter extends RecyclerView.Adapter<ActorsRecycleAdap
             Picasso.get().load(image).into(holder.image);
         }
 
-        for (int i = 1; i < actorInfo.size(); i++){
+        for (int i = 0; i < this.actorList.get(position).getInfoList().size(); i++){
             TextView t = new TextView(context);
-            SpannableString spannableString = SpannableString.valueOf(actorInfo.get(i));
+            SpannableString spannableString = SpannableString.valueOf(this.actorList.get(position).getInfoList().get(i));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 spannableString.setSpan(new BulletSpan(10,context.getResources().getColor(R.color.black,null),10),0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             }else {
-                spannableString = SpannableString.valueOf("\u25BA " + actorInfo.get(i));
+                spannableString = SpannableString.valueOf("\u25BA " + this.actorList.get(position).getInfoList().get(i));
             }
             t.setText(spannableString);
-//                    t.setText(movieItem.getKey_storylines().get(storylinePos).get(i));
+//                    t.setText(this.actorList.get(position).getInfoList().get(i));
             holder.linearLayout.addView(t);
         }
 

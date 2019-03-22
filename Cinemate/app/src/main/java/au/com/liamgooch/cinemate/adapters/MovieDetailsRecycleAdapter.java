@@ -145,6 +145,8 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
 
                 actorsViewHolder.actorRecyclerView.setAdapter(actorsViewHolder.actorsRecycleAdapter);
 
+//                actorsViewHolder.actorsRecycleAdapter.setActors(movieItem.getActorList());
+
                 return;
             case TITLE_BULLET_CARD:
                 TitleBulletViewHolder titleBulletViewHolder;
@@ -251,7 +253,7 @@ public class MovieDetailsRecycleAdapter extends RecyclerView.Adapter<ViewHolder>
             super(itemView);
 
             actorRecyclerView = (RecyclerView) itemView.findViewById(R.id.actor_card_recyclerView);
-            linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true);
+            linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
             actorsRecycleAdapter = new ActorsRecycleAdapter(movieItem.getActorList(),context);
         }
     }

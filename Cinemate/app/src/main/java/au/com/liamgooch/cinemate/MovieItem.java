@@ -90,7 +90,11 @@ public class MovieItem {
         }
         if (actorList != null){
             cardList.add(ACTORS_CARD);
-//            detailsList.add();
+            ArrayList<String> names = new ArrayList<>();
+            for (int i=0; i < actorList.size(); i++){
+                names.add(actorList.get(i).getName());
+            }
+            detailsList.add(names);
         }
         if (key_storylines != null){
             for (int i = 0; i < key_storylines.size(); i++){
