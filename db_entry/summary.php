@@ -7,8 +7,6 @@
 <body>
 	<?php 
 	
-	echo json_decode($_POST);
-	
 	//important info
 	$title = $_POST["title"];
 	$release = $_POST["release"];
@@ -48,10 +46,18 @@
 	foreach($_POST["imageLink"] as $index => $value){
 		array_push($actorArray[$index],$value);
 	}
-
-	$str_json = file_get_contents( 'php://input' );
-	print_r( $str_json );
+	
+	$actor_Parse = $_POST["actorsInf"];
+	echo "actors: ";
+	echo $actor_Parse;
 	echo "<br>";
+	
+
+//	echo "File contents: ";
+//	echo "<br>";
+//	$str_json = file_get_contents( 'php://input' );
+//	print_r( $str_json );
+//	echo "<br>";
 
 	//testing
 	//	print_r($_POST["actorNameTest"]);
@@ -131,6 +137,7 @@
 	$jsonFormat = json_encode( $jsonMovie );
 	//JSON_FORCE_OBJECT
 
+	echo "json format: ";
 	echo $jsonFormat;
 
 	//	$jsonFile = '

@@ -13,6 +13,7 @@ function addStorylineButtonOnClick(storyLine, storyLineDiv) {
 	input.type = "text";
 	//	input.id = boxID;
 	input.name = boxID;
+	input.minlength = 1;
 
 	var removeButton = document.createElement('input');
 	removeButton.type = "button";
@@ -134,33 +135,95 @@ function addActor(divLocation) {
 
 }
 
-function verify(formID) {
-	//compile(form);
-//	var s = $("#actorInfoDiv > div").length;
-//	console.log(s);
+function verify(form) {
 	
-	var form = formID; //document.getElementById(formID);
+	console.log("Verifying form");
+	//list of empty fields
+	var emptyFields = [];
+//	//check important info
+//	//title
+//	if(form.title.value === ""){
+//		emptyFields.push("Title");
+//	}
+//	//release
+//	if(form.release.value === ""){
+//		emptyFields.push("Release");
+//	}
+//	//rating
+//	if(form.rating.value === ""){
+//		emptyFields.push("Rating");
+//	}
+//	//runtime
+//	if(form.runtime.value === ""){
+//		emptyFields.push("Runtime");
+//	}
+//	//genre
+//	if(form.genre.value === ""){
+//		emptyFields.push("Genre");
+//	}
+//	//trailer
+//	if(form.trailer.value === ""){
+//		emptyFields.push("Trailer");
+//	}
+//	//poster
+//	if(form.poster.value === ""){
+//		emptyFields.push("Poster");
+//	}
+//	//synopsis
+//	if(form.synopsis.value === ""){
+//		emptyFields.push("Synopsis");
+//	}
 	
-	var infoDivs = form.getElementsByClassName("actorInfoDiv");
-	var info = [];
 	
-	for(i=0; i < infoDivs.length; i++){
-//		info.push(...infoDivs[i].getElementsByTagName("input"));
-//		console.log("divs: " + infoDivs[i].getElementsByTagName("input").length)
-		info.push([...infoDivs[i].getElementsByClassName("actorInfo")]);
-//		console.log("divs: " + infoDivs[i].getElementsByClassName("actorInfo").length)
+	//part_of_a_series
+	if(form.part_of_a_series.value === ""){
+		emptyFields.push("Part of a Series");
 	}
-//	console.log(info);
-	var extractedInfo = [];
-	for(j=0;j<info.length;j++){
-		var ind = [];
-		for(k=0;k<info[j].length;k++){
-			ind.push(info[j][k].value);
+	//franchise_location
+	if(form.franchise_location.value === ""){
+		emptyFields.push("Franchise Location");
+	}
+	//timeline_location
+	if(form.timeline_location.value === ""){
+		emptyFields.push("Timeline Location");
+	}
+	
+	//actors
+//	if(form.getElementsByClassName === ""){
+//		emptyFields.push("Budget");
+//	}
+	
+	//budget
+	if(form.budget.value === ""){
+		emptyFields.push("Budget");
+	}
+	//after credits
+	if(form.after_credit.value === ""){
+		emptyFields.push("After Credit Scene");
+	}
+	
+	
+	if(emptyFields.length > 0){
+		console.log("failed to verify form");
+		var notice = "You haven't filled out ";
+		for(var i=0; i < emptyFields.length; i++){
+			notice += "\"";
+			if(i === emptyFields.length - 1){
+				notice += emptyFields[i] + "\"";
+			}else{
+				if(i === emptyFields.length - 2){
+					notice += emptyFields[i] + "\" and ";
+				}else{
+					notice += emptyFields[i] + "\", ";
+				}
+			}
 		}
-		extractedInfo.push(ind);
+		notice += "! Would you like to continue?";
+		if(confirm(notice)){
+			return true;
+		}
+		return false;
 	}
-//	console.log(extractedInfo);
-	return extractedInfo;
 }
 
 function compile(form) {
@@ -182,41 +245,34 @@ function resetForm() {
 	window.location.reload(false);
 }
 
-function parseData( form ) {
-			var form = formID;
-
-			var infoDivs = form.getElementsByClassName( "actorInfoDiv" );
-			var info = [];
-
-			for ( i = 0; i < infoDivs.length; i++ ) {
-				info.push( [ ...infoDivs[ i ].getElementsByClassName( "actorInfo" ) ] );
-			}
-
-			var extractedInfo = [];
-			for ( j = 0; j < info.length; j++ ) {
-				var ind = [];
-				for ( k = 0; k < info[ j ].length; k++ ) {
-					ind.push( info[ j ][ k ].value );
-				}
-				extractedInfo.push( ind );
-			}
-
-			//			$.post('/summary.php',{array: JSON.stringify(extractedInfo)});
-			//			return extractedInfo;
-			console.log( extractedInfo );
-
-			request = new XMLHttpRequest();
-			request.open( "POST", "summary.php", true );
-			request.setRequestHeader( "Content-type", "application/json" );
-			request.send( JSON.stringify( extractedInfo ) );
+function parseActorData(form) {
+	//var form = formID;
+	
+	var infoDivs = form.getElementsByClassName("actorInfoDiv");
+	var info = [];
+	
+	//push each actor div - contains all info
+	var i=0;	
+	for (i; i < infoDivs.length; i++) {
+		info.push([...infoDivs[i].getElementsByClassName("actorInfo")]);
+	}
+	
+	//extrct the info from each group - actor
+	var extractedInfo = [];
+	for (var j = 0; j < info.length; j++) {
+		var ind = [];
+		for (var k = 0; k < info[j].length; k++) {
+			ind.push(info[j][k].value);
 		}
-
-//document.getElementById("dataForm").addEventListener("submit", e => {
-//    e.preventDefault();
-//    parseData();
-//});
-
-//$.post("summary.php", $("#movieDataForm").serialize(), function(data){
-//	console.log("serialised");
-//	alert(data);
-//});
+		extractedInfo.push(ind);
+	}
+//	console.log(extractedInfo);
+	return extractedInfo;
+	
+	    //POST to PHP
+//    request = new XMLHttpRequest();
+//    request.open( "POST", "summary.php", true );
+//    request.setRequestHeader( "Content-type", "application/json" );
+//    request.send( JSON.stringify( extractedInfo ) );
+	
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html version="0.1">
+<head>
+<meta charset="utf-8">
+<!--<script type="text/javascript" src="scripts.js?v=0.2" ></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title>Cinemate Database Entry</title>
+<h1>Cinemate Database Entry</h1>
+</head>
+
+<body>
+<input type="button" name="resetForm" value="RESET FORM" onclick="resetForm()"/>
+<!--action="/action_page.php"--> 
+<!--	onSubmit="compile(this)"--> 
+<!--	name="movieDataForm" action="summary.php" method="post"-->
+<form id="dataForm">
+  <h2>Important Information</h2>
+  <strong>Title:</strong>
+  <input type="text" name="title">
+  <br>
+  <strong>Release:</strong>
+  <input type="date" name="release">
+  <input type="submit" name="sub_button" value="Submit">
+
+</form>
+	  <script>
+	  
+$( "#dataForm" ).submit(function( event ) {
+  alert( "Handler for .submit() called." );
+  event.preventDefault();
+});
+		
+</script>
+</body>
+</html>
