@@ -1,4 +1,14 @@
-<!doctype html>
+<?php
+$approved = $_POST['approved'];
+$jsonData = $_POST['jsonFormat'];
+
+if($approved ==="1"){
+	addMovie()
+}else{
+	
+
+
+$page = '
 <html version="0.1">
 <head>
 <meta charset="utf-8">
@@ -10,7 +20,9 @@
 
 <body>
 <input type="button" name="resetForm" value="RESET FORM" onclick="resetForm()"/>
-
+<!--action="/action_page.php"--> 
+<!--	onSubmit="compile(this)"--> 
+<!--	name="movieDataForm" action="summary.php" method="post"-->
 <form id="movieDataForm" action="summary.php" method="post">
   <h2>Important Information</h2>
   <strong>Title:</strong>
@@ -40,10 +52,10 @@
   <h2>Key Storylines </h2>
   <h3>Key Movie Storylines</h3>
   <div id="movieStoryLineDiv"></div>
-  <button type="button" onclick="addStorylineButtonOnClick('movieStoryLine','movieStoryLineDiv')">Add Storyline</button>
+  <button type="button" onclick="addStorylineButtonOnClick("movieStoryLine","movieStoryLineDiv")">Add Storyline</button>
   <h3>Key Real-Life Storylines</h3>
   <div id="realStoryLineDiv"></div>
-  <button type="button" onclick="addStorylineButtonOnClick('realStoryLine','realStoryLineDiv')">Add Storyline</button>
+  <button type="button" onclick="addStorylineButtonOnClick("realStoryLine","realStoryLineDiv")">Add Storyline</button>
   <hr>
   <h2>Key Information</h2>
   <strong>Part of a series?</strong>
@@ -57,7 +69,7 @@
   <hr>
   <h2>Actors</h2>
   <div id="actorDivHTML"></div>
-  <button type="button" onclick="addActor('actorDivHTML')">Add Actor</button>
+  <button type="button" onclick="addActor("actorDivHTML")">Add Actor</button>
   <hr>
   <h2>Other</h2>
   <strong>Budget:</strong>
@@ -68,38 +80,26 @@
   <br>
   <input type="submit" name="sub_button" value="Submit">
 </form>
-<script>
-	  
-//	  $("#movieDataForm").on('submiy', function(event){
-//        event.preventDefault();
-//        //var serData = $("#movieDataForm").serialize();
-//		var test = $("#title").val();
-//		//serData += parseActorData();
-//			var serData = 'test1='+test;
-//        //POST to PHP
-//        $.ajax({
-//           type: "POST",
-//           url: "summary.php",
-//           data: serData,
-//           success: function(response){
-//			   console.log("Success");
-//               //Do whatever you want when form is sent.
-//           }
-//        });
 
-		$("#movieDataForm").submit(function(event){
-			if(verify(this) == false){
-				event.preventDefault();
-			}
-			var actorsInf = JSON.stringify(parseActorData(this));
-
-			$('<input />').attr('type', 'hidden')
-          .attr('name', "actorsInf")
-          .attr('value', actorsInf)
-          .appendTo('#movieDataForm');
-
-		});
-	
-	</script>
 </body>
 </html>
+		
+		';
+
+
+
+
+
+}
+	
+function addMovie(){
+	echo "So in theory this has uploaded to the database";
+?>
+<!--
+<script>
+	addMovie($jsonData);
+</script>
+-->
+<?php	
+}
+?>

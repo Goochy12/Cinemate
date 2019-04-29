@@ -17,65 +17,50 @@
 	$poster_link = $_POST["poster_link"];
 	$synopsis = $_POST["genre"];
 	
+	$dbEntry = strtolower($title);
+	$dbEntry = str_replace(" ","_",$dbEntry);
+	//add release date
+	
 	//storylines
 	//movie
 	$movieSLArray = array();
 	foreach($_POST["movieStoryLine"] as $value){
 		array_push($movieSLArray,$value);
 	}
-	$movieStoryLines = implode("<br>",$movieSLArray);
+	$movieStoryLines = implode("<br><li>",$movieSLArray);
 	
 	//real
 	$realSLArray = array();
 	foreach($_POST["realStoryLine"] as $value){
 		array_push($realSLArray,$value);
 	}
-	$realStoryLines = implode("<br>",$realSLArray);
+	$realStoryLines = implode("<br><li>",$realSLArray);
 
 	//Actors
 	$actorArray = array();
 	//name
-	foreach($_POST["actorName"] as $value){
+	foreach($_POST["actorName"] as $index => $value){
 		array_push($actorArray,array($value));
 	}
+	
 	//character
 	foreach($_POST["characterName"] as $index => $value){
 		array_push($actorArray[$index],$value);
 	}
+	
 	//image
 	foreach($_POST["imageLink"] as $index => $value){
 		array_push($actorArray[$index],$value);
 	}
-	
-	$actor_Parse = $_POST["actorsInf"];
-	echo "actors: ";
-	echo $actor_Parse;
-	echo "<br>";
-	
 
-//	echo "File contents: ";
-//	echo "<br>";
-//	$str_json = file_get_contents( 'php://input' );
-//	print_r( $str_json );
-//	echo "<br>";
-
-	//testing
-	//	print_r($_POST["actorNameTest"]);
-
-	//	
-	//	
-	//	//info
-	//	foreach($_POST["actorDiv"] as $divIndex => $listOfValues){
-	//		print_r($divIndex);
-	//		print_r($listOfValues);
-	//		array_push($actorArray[$divIndex],array());
-	//		foreach($listOfValues["actorInfoDiv"] as $index => $value){
-	//			print_r($value);
-	//			array_push($actorArray[$divIndex][$index],$value);
-	//		}
-	//	}
-	//	
-	//	print_r($actorArray);
+	$actorsInfo = json_decode($_POST["actorsInf"]);
+	foreach($actorsInfo as $infoIndex => $infoSet){
+		$info = array();
+		foreach($infoSet as $index => $value){
+			array_push($info, $value);
+		}
+		array_push($actorArray[$infoIndex],$info);
+	}
 
 	//Key Information
 	$part_of_a_series = $_POST[ "part_of_a_series" ];
@@ -115,6 +100,17 @@
 	$key_storylines->$realLifeString = $realSLArray;
 
 	//actors
+//	$actors->$actorArray;
+	$ac = array();
+	foreach($actorArray as $actorIndex => $actorValues){
+		$actorDeats = array(
+		"name" => $actorValues[0],
+		"character" => $actorValues[1],
+		"image" => $actorValues[2],
+		"info" => $actorValues[3]
+			);
+		array_push($ac, $actorDeats);
+	}
 
 	//key information
 	$part_of_series_string = "part_of_a_series?";
@@ -131,49 +127,41 @@
 	//compile	
 	$jObj->important_information = $important_information;
 	$jObj->key_storylines = $key_storylines;
+	$jObj->actors = $ac;
 	$jObj->key_information = $key_information;
 	$jObj->other = $other;
-	$jsonMovie = array( $title => $jObj );
+	$jsonTitle = $title.$release;
+	$jsonMovie = array( $jsonTitle => $jObj );
 	$jsonFormat = json_encode( $jsonMovie );
 	//JSON_FORCE_OBJECT
 
 	echo "json format: ";
 	echo $jsonFormat;
-
-	//	$jsonFile = '
-	//	{
-	//		'.$title.' : {
-	//			"important_information" : {
-	//			
-	//				"title" : "'.$title.'",
-	//				
-	//			},
-	//			
-	//			"actors" : {
-	//			
-	//			},
-	//			
-	//			"other" : {
-	//			
-	//			}
-	//		}
-	//	}
-	//	';
-
-	//	var testMov = {
-	//		"test" : {
-	//			"title" : "movie",
-	//			"genre" : "test"
-	//		}
-	//	
-	//};
-
+	
+	//convert actors to html	
+	$htmlStr = "";
+	foreach($actorArray as $index => $value){
+		$htmlStr .= "<b>Name: </b>";
+		$htmlStr .= $value[0];
+		$htmlStr .= "<br>";
+		
+		$htmlStr .= "<b>Character: </b>";
+		$htmlStr .= $value[1];
+		$htmlStr .= "<br>";
+		
+		$htmlStr .= "<b>Image: </b>";
+		$htmlStr .= $value[2];
+		$htmlStr .= "<br>";
+		
+		$htmlStr .= "<li>";
+		$htmlStr .= implode("<br><li>",$value[3]);
+		
+		$htmlStr .= "<br>";
+		$htmlStr .= "<br>";
+		
+	}
 
 	//EMAIL
-
-	$to = 'liamgooch@live.com.au';
-	$cc = 'ljohnson3013@gmail.com';
-	$subject = "CINEMATE - {$title}";
 	$message = "
 <html>
 <head>
@@ -213,12 +201,14 @@
 <h3>Key Movie Storylines</h3>
 	
 <div id='movieStoryLineDiv'>
+<li>
 {$movieStoryLines}
 </div>
 	
 <h3>Key Real-Life Storylines</h3>
 
 	<div id='realStoryLineDiv'>
+	<li>
 	{$realStoryLines}
 	</div>
 	
@@ -238,7 +228,10 @@
 
 <h2>Actors</h2>
 	
-	<div id='actorDiv'></div>
+	<div id='actorDiv'>
+		{$htmlStr}
+		<br>
+	</div>
 	
 
 <hr>
@@ -255,13 +248,27 @@
 
 	$message .= "
 	
-		<input type='button' value='APPROVE'>
-		<input type='button' value='EDIT'>
+		<form id='approveForm' action='goochystesting.tk/submitJSON.php' method='post'>
+			<input type='hidden' name='jsonData' value='{$jsonFormat}'/>
+			<input type='hidden' name='approved' value='1'/>
+  			<input type='submit' name='approve_button' value='Approve'>
+  		</form>
+	
+		<form id='editForm' action='goochystesting.tk/submitJSON.php' method='post'>
+			<input type='hidden' name='jsonData' value='{$jsonFormat}'/>
+			<input type='hidden' name='approved' value='0'/>
+  			<input type='submit' name='edit_button' value='Edit'>
+  		</form>
+		
 		</body>
 		</html>
 	";
-	//$headers = 'From: db_entry@cinemate.com' . "\r\n" .
-	//    'Reply-To: ljohnson3013@gmail.com' . "\r\n";
+	
+	
+	//------- SERVER SIDED MAILING CODE ONLY ---------
+	$to = 'liamgooch@live.com.au';
+	$cc = 'ljohnson3013@gmail.com';
+	$subject = "CINEMATE - {$title}";
 
 	$headers[] = "MIME-Version: 1.0";
 	$headers[] = "Content-Type: text/html; charset=UTF-8";
@@ -270,12 +277,45 @@
 	$headers[] = "From: db_entry@cinemate.com";
 	$headers[] = "Reply-To: ljohnson3013@gmail.com";
 
-	//	$success = mail($to, $subject, $message, implode("\r\n", $headers));
-	//if (!$success) {
-	//   print_r(error_get_last()['message']);
-	//}
+		$success = mail($to, $subject, $message, implode("\r\n", $headers));
+	if (!$success) {
+	   print_r(error_get_last()['message']);
+	}
 
-	//mail($to, $subject, $message, $headers);
+	mail($to, $subject, $message, $headers);
+	
+	//------- LOCAL HOST MAILING -------
+//	require 'PHPMailer/PHPMailerAutoload.php';
+//
+//$mail = new PHPMailer;
+//
+//$mail->isSMTP();                            // Set mailer to use SMTP
+//$mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
+//$mail->SMTPAuth = true;                     // Enable SMTP authentication
+//$mail->Username = 'gooch.liam@gmail.com';          // SMTP username
+//$mail->Password = 'Nickelback12'; // SMTP password
+//$mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
+//$mail->Port = 587;                          // TCP port to connect to
+//
+//$mail->setFrom('db_entry@cinemate.com', 'DB_Entry');
+//$mail->addReplyTo('ljohnson3013@gmail.com', 'Liam Johnson');
+//$mail->addAddress('liamgooch@live.com.au');   // Add a recipient
+//$mail->addCC('ljohnson3013@gmail.com');
+////$mail->addBCC('bcc@example.com');
+//
+//$mail->isHTML(true);  // Set email format to HTML
+//
+//$bodyContent = $message;
+//
+//$mail->Subject = "CINEMATE - {$title}";
+//$mail->Body    = $bodyContent;
+//
+//if(!$mail->send()) {
+//    echo 'Message could not be sent.';
+//    echo 'Mailer Error: ' . $mail->ErrorInfo;
+//} else {
+//    echo 'Message has been sent';
+}
 	?>
 
 	<input type="button" value="Go Back" onClick="goBack()"/>
