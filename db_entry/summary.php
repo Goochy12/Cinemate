@@ -47,7 +47,6 @@
 	foreach ( $_POST[ "characterName" ] as $index => $value ) {
 		array_push( $actorArray[ $index ], $value );
 	}
-
 	//image
 	foreach ( $_POST[ "imageLink" ] as $index => $value ) {
 		array_push( $actorArray[ $index ], $value );
