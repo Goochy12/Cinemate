@@ -1,0 +1,16 @@
+{
+  "name": "firebase_node",
+  "version": "1.0.0",
+  "description": "Upload movie JSON data to Firebase Database for Cinemate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "firebase",
+    "database",
+    "json"
+  ],
+  "author": "Liam Gooch",
+  "license": "ISC"
+}
